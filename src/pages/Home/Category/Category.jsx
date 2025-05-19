@@ -8,6 +8,7 @@ import slide2 from "../../../assets/home/slide2.jpg";
 import slide3 from "../../../assets/home/slide3.jpg";
 import slide4 from "../../../assets/home/slide4.jpg";
 import slide5 from "../../../assets/home/slide5.jpg";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const slides = [
   { img: slide1, title: "Salads" },
@@ -19,7 +20,11 @@ const slides = [
 
 const Category = () => {
   return (
-    <div className="mb-24">
+    <section>
+      <SectionTitle
+        heading={"Order Online"}
+        subHeading={"From 11.00am to 10.00pm"}
+      />
       <Swiper
         slidesPerView={1}
         breakpoints={{
@@ -31,18 +36,22 @@ const Category = () => {
         centeredSlides={true}
         pagination={{ clickable: true }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper mb-24"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative">
-            <img src={slide.img} alt={`${slide.title} image`} className="w-full" />
+            <img
+              src={slide.img}
+              alt={`${slide.title} image`}
+              className="w-full"
+            />
             <h3 className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl lg:text-4xl uppercase text-white font-bold py-2">
               {slide.title}
             </h3>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
