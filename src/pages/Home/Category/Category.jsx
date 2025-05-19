@@ -45,7 +45,7 @@ const Category = () => {
               alt={`${slide.title} image`}
               className="w-full"
             />
-            <h3 className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl lg:text-4xl uppercase text-white font-bold py-2">
+            <h3 className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl lg:text-4xl uppercase text-white py-2">
               {slide.title}
             </h3>
           </SwiperSlide>
