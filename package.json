@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@smastrom/react-rating": "^1.5.0",
     "daisyui": "^5.0.35",
     "localforage": "^1.10.0",
+    "lucide-react": "^0.511.0",
     "match-sorter": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
