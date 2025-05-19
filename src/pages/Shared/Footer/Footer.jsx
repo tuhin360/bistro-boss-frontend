@@ -28,7 +28,10 @@ const Footer = () => {
       {/* Bottom Footer */}
       <footer className="footer footer-center p-4 bg-[#151515] text-white">
         <div>
-          <p>Copyright © {new Date().getFullYear()} - All right reserved by Bistro Boss</p>
+          <p>
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            Bistro Boss
+          </p>
         </div>
       </footer>
     </>
