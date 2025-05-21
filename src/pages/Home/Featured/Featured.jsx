@@ -29,9 +29,9 @@ const Featured = () => {
             Discover the best places to find what you're looking for, quickly
             and easily.
           </p>
-          <button className="btn btn-outline border-b-4 text-white hover:bg-white hover:text-black">
-            Order Now
-          </button>
+         <button className="btn btn-outline uppercase  text-white border-0 border-b-4 hover:border-b-4 border-b-white md:hover:border-b-orange md:hover:text-white md:hover:bg-black">
+          Read More
+        </button>
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@ const Testimonials = () => {
                 readOnly
                 className="mx-auto mb-4"
               />
-              <Quote className="mx-auto text-gray-400 size-12 rotate-180 mb-4" />
+              <Quote className="mx-auto text-black size-12 rotate-180 mb-4" />
               <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4">
                 {review.details}
               </p>

@@ -1,96 +1,70 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const navOptions = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Contact Us
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Dashboard
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/services"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Our Menu
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/blog"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Our Shop
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "text-yellow-400" : "")}
-        >
-          Login
-        </NavLink>
-      </li>
-    </>
-  );
-  return (
-    <>
-      <div className="navbar fixed z-10 max-w-screen-xl text-white font-bold bg-black bg-opacity-50 mx-auto">
-        <div className="navbar-start">
-          <div className="dropdown ">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-black bg-opacity-90 rounded-box w-52 uppercase"
-            >
-              {navOptions}
-            </ul>
-          </div>
-          <a className="btn btn-ghost normal-case text-xl">BISTRO BOSS</a>
-        </div>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        <div className="navbar-end">
-          <div className="navbar-center hidden lg:flex uppercase">
-            <ul className="menu menu-horizontal px-1">{navOptions}</ul>
-          </div>
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/contact", label: "Contact Us" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/menu", label: "Our Menu" },
+    { to: "/shop", label: "Our Shop" },
+    { to: "/login", label: "Login" },
+  ];
+
+  const navOptions = navLinks.map((link) => (
+    <li key={link.to}>
+      <NavLink
+        to={link.to}
+        className={({ isActive }) =>
+          `block px-3 py-2 font-medium uppercase transition-colors duration-200 ${
+            isActive ? "text-yellow-400" : " hover:text-yellow-300"
+          }`
+        }
+        onClick={() => setMenuOpen(false)}
+      >
+        {link.label}
+      </NavLink>
+    </li>
+  ));
+
+  return (
+    <nav className="fixed z-50 w-full max-w-screen-xl mx-auto bg-black bg-opacity-50 text-white font-bold">
+      <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center">
+          <span className="text-xl font-bold">BISTRO BOSS</span>
+        </div>
+        <div className="lg:hidden">
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="text-white focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+        <ul className="hidden lg:flex space-x-2 uppercase">{navOptions}</ul>
+      </div>
+     
+      <div
+        className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-black bg-opacity-90 z-40 transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-4">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-white mb-4"
+            aria-label="Close menu"
+          >
+            <X size={28} />
+          </button>
+          <ul className="flex flex-col space-y-1 uppercase">{navOptions}</ul>
         </div>
       </div>
-    </>
+    </nav>
   );
 };
 

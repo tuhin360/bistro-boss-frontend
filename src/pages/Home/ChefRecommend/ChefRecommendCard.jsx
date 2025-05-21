@@ -12,7 +12,7 @@ const ChefRecommendCard = ({ item }) => {
         <h2 className="card-title text-lg md:text-xl">{title}</h2>
         <p className="text-sm md:text-base">{description}</p>
         <div className="card-actions">
-          <button className="btn btn-outline uppercase text-orange-500 border-0 border-b-4 hover:bg-black">
+          <button className="btn btn-outline uppercase text-orange-500 border-0 border-b-4 md:hover:bg-black md:hover:border-b-orange-500">
             Add To Cart
           </button>
         </div>
