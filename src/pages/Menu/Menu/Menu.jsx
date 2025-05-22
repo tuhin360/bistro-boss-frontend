@@ -35,7 +35,12 @@ const Menu = () => {
       ></SectionTitle>
 
       {/*offered menu items*/}
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory
+        items={offered}
+        title={"offered"}
+        description={"let's try something new"}
+        img={pizzaImg}
+      ></MenuCategory>
 
       {/*dessert menu items*/}
       <MenuCategory
@@ -50,7 +55,7 @@ const Menu = () => {
       {/*pizza menu items*/}
       <MenuCategory
         items={pizza}
-        title={"Pizza"}
+        title={"pizza"}
         description={
           "Enjoy oven-fresh pizzas loaded with cheese and toppings. Every slice is crafted to satisfy your cravings."
         }
@@ -60,7 +65,7 @@ const Menu = () => {
       {/*salad menu items*/}
       <MenuCategory
         items={salad}
-        title={"Salad"}
+        title={"salad"}
         description={"Enjoy our crisp, healthy, and refreshing salads."}
         img={saladImg}
       ></MenuCategory>
@@ -68,7 +73,7 @@ const Menu = () => {
       {/*soup menu items*/}
       <MenuCategory
         items={soup}
-        title={"Soup"}
+        title={"soup"}
         description={"Warm up with our comforting and flavorful soups."}
         img={soupImg}
       ></MenuCategory>

@@ -10,7 +10,7 @@ const Navbar = () => {
     { to: "/contact", label: "Contact Us" },
     { to: "/dashboard", label: "Dashboard" },
     { to: "/menu", label: "Our Menu" },
-    { to: "/order", label: "Order Food" },
+    { to: "/order/salad", label: "Order Food" },
     { to: "/login", label: "Login" },
   ];
 
