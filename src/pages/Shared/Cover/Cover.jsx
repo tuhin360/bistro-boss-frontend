@@ -9,12 +9,21 @@ const Cover = ({ img, title, description }) => {
       strength={300}
     >
       <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] flex items-center justify-center">
-        <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-2xl">
+      <div
+  className="
+    absolute z-0 rounded-md
+    bg-black bg-opacity-50
+    inset-0 
+    sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
+    sm:w-8/12 sm:h-1/2
+  "
+></div>
+
+        <div className="relative z-10 text-center text-white px-4">
           <h1 className="mb-5 text-2xl  md:text-4xl lg:text-5xl uppercase  font-bold">
             {title}
           </h1>
-          <p className="mb-5 text-sm sm:text-base md:text-lg lg:text-xl ">{description}</p>
+          <p className=" mb-5 text-sm md:text-base lg:text-lg ">{description}</p>
         </div>
       </div>
     </Parallax>

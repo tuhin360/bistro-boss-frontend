@@ -8,15 +8,12 @@ const MenuItem = ({ item }) => {
         src={image}
         alt={name}
       />
-
       <div className="flex-1 text-center md:text-left">
         <h3 className="uppercase font-semibold text-lg md:text-xl mb-1">
           {name} <span className="hidden md:inline">----------</span>
         </h3>
         <p className="text-sm text-gray-600">{recipe}</p>
       </div>
-
-      {/* Price */}
       <p className="text-[#BB8506] font-bold">${price}</p>
     </div>
   );

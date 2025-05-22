@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+ import { FaFacebookF } from "react-icons/fa";
+ import { FaTwitter } from "react-icons/fa";
+ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -18,9 +21,9 @@ const Footer = () => {
           <span className="text-lg font-semibold mb-1">Follow Us</span>
           <span className="mb-4">Join us on social media</span>
           <div className="grid grid-flow-col gap-4">
-            <Link>Facebook</Link>
-            <Link>Twitter</Link>
-            <Link>Instagram</Link>
+            <Link><FaFacebookF /></Link>
+            <Link><FaInstagram /></Link>
+            <Link><FaTwitter /></Link>
           </div>
         </div>
       </footer>
