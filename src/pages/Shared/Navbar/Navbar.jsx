@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,7 +35,9 @@ const Navbar = () => {
     <nav className="fixed z-50 w-full max-w-screen-xl mx-auto bg-black bg-opacity-50 text-white font-bold">
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center">
-          <span className="text-xl font-bold">BISTRO BOSS</span>
+          <Link to="/" className="text-xl font-bold">
+            BISTRO BOSS
+          </Link>
         </div>
         <div className="lg:hidden">
           <button
@@ -47,7 +50,7 @@ const Navbar = () => {
         </div>
         <ul className="hidden lg:flex space-x-2 uppercase">{navOptions}</ul>
       </div>
-     
+
       <div
         className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-black bg-opacity-90 z-40 transform transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
