@@ -1,0 +1,21 @@
+/* Remove default dot look and style as numbers */
+.swiper-pagination-bullet {
+  font-size: 1.25rem;            /* Larger number */
+  font-weight: bold;             /* Bold text */
+  color: #333;                   /* Normal text color */
+  background: none !important;  /* Remove default dot background */
+  opacity: 1 !important;        /* Fully visible */
+  width: auto !important;       /* Let it size by content */
+  height: auto !important;
+  border-radius: 0 !important;  /* Remove rounded shape */
+  margin: 0 0.5rem;             /* Space between numbers */
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+/* Active page number style */
+.swiper-pagination-bullet-active {
+  color: #f97316 !important;     /* Highlight active */
+  border-bottom: 2px solid #f97316;
+}
+

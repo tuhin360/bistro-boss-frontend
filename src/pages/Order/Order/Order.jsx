@@ -8,7 +8,7 @@ import FoodCard from "../../../components/FoodCard/FoodCard";
 import "../Order/Order.css";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useEffect } from "react";
+import OrderTab from "../OrderTab/OrderTab";
 
 const Order = () => {
   const categories = ["salad", "pizza", "soup", "dessert", "drinks", "offered"];
@@ -17,8 +17,6 @@ const Order = () => {
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = useMenu();
   // console.log(category);
-
-  
 
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
@@ -51,46 +49,22 @@ const Order = () => {
           <Tab>Offered</Tab>
         </TabList>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {salad.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={salad}></OrderTab>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {pizza.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={pizza}></OrderTab>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {soup.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={soup}></OrderTab>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {dessert.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={dessert}></OrderTab>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {drinks.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={drinks}></OrderTab>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-            {offered.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={offered}></OrderTab>
         </TabPanel>
       </Tabs>
     </div>
