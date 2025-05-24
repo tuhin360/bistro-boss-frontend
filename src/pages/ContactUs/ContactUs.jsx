@@ -58,7 +58,7 @@ const ContactUs = () => {
         subHeading={"Send us a message"}
       ></SectionTitle>
       <Form className="bg-gray-100 p-6 md:p-10 rounded-lg shadow-md">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
             <h3 className="mb-2 font-semibold">Name</h3>
             <input
@@ -67,7 +67,7 @@ const ContactUs = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <div>
+          <div className="md:ml-2">
             <h3 className="mb-2 font-semibold">Email</h3>
             <input
               type="email"
@@ -75,15 +75,16 @@ const ContactUs = () => {
               className="input input-bordered w-full"
             />
           </div>
+          <div>
+            <h3 className="mb-2 font-semibold">Phone</h3>
+            <input
+              type="number"
+              placeholder="Phone Number"
+              className="input input-bordered w-full"
+            />
+          </div>
         </div>
-        <div className="mt-6">
-          <h3 className="mb-2 font-semibold">Phone</h3>
-          <input
-            type="number"
-            placeholder="Phone Number"
-            className="input input-bordered w-full"
-          />
-        </div>
+
         <div className="mt-6">
           <h3 className="mb-2 font-semibold">Message</h3>
           <textarea
