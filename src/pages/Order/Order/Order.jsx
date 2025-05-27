@@ -42,11 +42,11 @@ const Order = () => {
       >
         <TabList>
           <Tab className="react-tabs__tab">Salads</Tab>
-          <Tab>Pizza</Tab>
-          <Tab>Soups</Tab>
-          <Tab>Desserts</Tab>
-          <Tab>Drinks</Tab>
-          <Tab>Offered</Tab>
+          <Tab className="react-tabs__tab">Pizza</Tab>
+          <Tab className="react-tabs__tab">Soups</Tab>
+          <Tab className="react-tabs__tab">Desserts</Tab>
+          <Tab className="react-tabs__tab">Drinks</Tab>
+          <Tab className="react-tabs__tab">Offered</Tab>
         </TabList>
         <TabPanel>
           <OrderTab items={salad}></OrderTab>

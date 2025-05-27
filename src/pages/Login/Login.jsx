@@ -63,9 +63,9 @@ const Login = () => {
           backgroundImage: `url(${authenticationImg})`,
         }}
       >
-        <div className="bg-white shadow-xl rounded-xl flex flex-col lg:flex-row max-w-5xl w-full overflow-hidden">
+        <div className=" shadow-2xl rounded-xl flex flex-col lg:flex-row max-w-5xl w-full overflow-hidden border border-gray-300 ">
           {/* Left Side Image */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center p-8">
+          <div className="w-full lg:w-1/2 flex justify-center items-center p-8 ">
             <img
               src={authenticationImg2}
               alt="Authentication Illustration"
@@ -91,7 +91,9 @@ const Login = () => {
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-medium mb-1">Password</label>
+                <label className="block text-sm font-medium mb-1">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
@@ -132,7 +134,10 @@ const Login = () => {
               {/* Register Link */}
               <p className="text-sm text-center mt-4">
                 New here?
-                <Link to="/signup" className="text-orange-600 font-medium underline ml-1">
+                <Link
+                  to="/signup"
+                  className="text-orange-600 font-medium underline ml-1"
+                >
                   Create a New Account
                 </Link>
               </p>

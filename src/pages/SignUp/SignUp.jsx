@@ -53,7 +53,7 @@ const SignUp = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-white shadow-lg rounded-lg p-10 flex flex-col lg:flex-row items-center gap-10 max-w-5xl w-full border border-gray-200">
+        <div className="shadow-lg rounded-lg p-10 flex flex-col lg:flex-row items-center gap-10 max-w-5xl w-full border border-gray-300">
           
           {/* Form Section */}
           <div className="w-full lg:w-1/2">

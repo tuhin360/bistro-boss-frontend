@@ -2,6 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,6 +18,15 @@ const Navbar = () => {
     { to: "/dashboard", label: "Dashboard" },
     { to: "/menu", label: "Our Menu" },
     { to: "/order/salad", label: "Order Food" },
+    {
+      to: "/cart",
+      label: (
+        <button className="flex justify-center items-center gap-2">
+          <FaShoppingCart className="text-2xl" />
+          <div className="badge badge-secondary">+0</div>
+        </button>
+      ),
+    },
   ];
 
   const navOptions = navLinks.map((link) => (
@@ -38,7 +48,10 @@ const Navbar = () => {
   return (
     <nav className="fixed z-50 w-full max-w-screen-xl mx-auto bg-black bg-opacity-60 text-white font-semibold">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
-        <Link to="/" className="text-xl font-bold tracking-wide text-yellow-400">
+        <Link
+          to="/"
+          className="text-xl font-bold tracking-wide text-yellow-400"
+        >
           BISTRO BOSS
         </Link>
 
@@ -64,7 +77,9 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full object-cover border border-yellow-400"
                 />
               )}
-              <span className="text-yellow-300 text-sm">{user.displayName}</span>
+              <span className="text-yellow-300 text-sm">
+                {user.displayName}
+              </span>
               <button
                 onClick={handleLogout}
                 className="text-sm uppercase hover:text-yellow-400"
@@ -97,13 +112,15 @@ const Navbar = () => {
       >
         <div className="p-4 flex flex-col h-full">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-lg font-bold text-yellow-400">Menu</span>
+            <span> </span>
             <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
               <X size={28} className="text-white" />
             </button>
           </div>
 
-          <ul className="flex flex-col space-y-2 uppercase flex-grow">{navOptions}</ul>
+          <ul className="flex flex-col space-y-2 uppercase flex-grow">
+            {navOptions}
+          </ul>
 
           {user ? (
             <div className="flex flex-col items-start mt-6 border-t border-gray-700 pt-4 space-y-2">
@@ -114,7 +131,9 @@ const Navbar = () => {
                   className="w-10 h-10 rounded-full object-cover border border-yellow-400"
                 />
               )}
-              <span className="text-yellow-300 text-sm">{user.displayName}</span>
+              <span className="text-yellow-300 text-sm">
+                {user.displayName}
+              </span>
               <button
                 onClick={() => {
                   handleLogout();
