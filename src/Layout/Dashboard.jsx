@@ -11,6 +11,7 @@ import { MdHomeFilled, MdRateReview } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const dashboardLinks = [
   { to: "/dashboard/user-home", icon: <FaShoppingCart />, label: "User Home" },
@@ -33,6 +34,7 @@ const mainLinks = [
 ];
 
 const Dashboard = () => {
+  const [cart] = useCart();
   const linkClass = ({ isActive }) =>
     `flex items-center gap-2 px-2 py-1 rounded hover:bg-orange-500 ${
       isActive ? "text-white bg-blue-500" : "text-black"
@@ -42,7 +44,10 @@ const Dashboard = () => {
     <div className="flex">
       {/* Sidebar */}
       <div className="w-64 min-h-screen uppercase bg-orange-400">
-        <Link to="/" className="text-xl px-6 block  mt-4 font-bold tracking-wide text-black ">
+        <Link
+          to="/"
+          className="text-xl px-6 block  mt-4 font-bold tracking-wide text-black "
+        >
           BISTRO BOSS
         </Link>
         <ul className=" p-4 space-y-1">
@@ -50,7 +55,9 @@ const Dashboard = () => {
             <li key={link.to}>
               <NavLink to={link.to} className={linkClass}>
                 {link.icon}
-                {link.label}
+                {link.to === "/dashboard/cart"
+                  ? `${link.label} (${cart.length})`
+                  : link.label}
               </NavLink>
             </li>
           ))}
