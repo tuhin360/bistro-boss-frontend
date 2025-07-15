@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -21,17 +23,30 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createUser(data.email, data.password)
       .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
         updateUserProfile(data.name, data.photoUrl)
           .then(() => {
-            reset();
-            Swal.fire({
-              title: "Sign Up Successful",
-              icon: "success",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1500,
+            // create user entry in the database
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                console.log("User created successfully:", res.data);
+                reset();
+                Swal.fire({
+                  title: "Sign Up Successful",
+                  icon: "success",
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
             });
-            navigate("/");
           })
           .catch((error) => console.log(error));
       })
@@ -54,7 +69,6 @@ const SignUp = () => {
         }}
       >
         <div className="shadow-lg rounded-lg p-10 flex flex-col lg:flex-row items-center gap-10 max-w-5xl w-full border border-gray-300">
-          
           {/* Form Section */}
           <div className="w-full lg:w-1/2">
             <h2 className="text-3xl font-bold mb-6">Sign Up</h2>
@@ -68,19 +82,25 @@ const SignUp = () => {
                   placeholder="Type here"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
-                {errors.name && <p className="text-red-500 text-sm">Name is required</p>}
+                {errors.name && (
+                  <p className="text-red-500 text-sm">Name is required</p>
+                )}
               </div>
 
               {/* Photo URL */}
               <div>
-                <label className="block text-sm font-medium mb-1">Photo URL</label>
+                <label className="block text-sm font-medium mb-1">
+                  Photo URL
+                </label>
                 <input
                   type="text"
                   {...register("photoUrl", { required: true })}
                   placeholder="Photo URL"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
-                {errors.photoUrl && <p className="text-red-500 text-sm">Photo URL is required</p>}
+                {errors.photoUrl && (
+                  <p className="text-red-500 text-sm">Photo URL is required</p>
+                )}
               </div>
 
               {/* Email */}
@@ -92,28 +112,42 @@ const SignUp = () => {
                   placeholder="Type here"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
-                {errors.email && <p className="text-red-500 text-sm">Email is required</p>}
+                {errors.email && (
+                  <p className="text-red-500 text-sm">Email is required</p>
+                )}
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-medium mb-1">Password</label>
+                <label className="block text-sm font-medium mb-1">
+                  Password
+                </label>
                 <input
                   type="password"
                   {...register("password", {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
-                    pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).*$/,
+                    pattern:
+                      /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).*$/,
                   })}
                   placeholder="Enter your password"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
-                {errors.password?.type === "required" && <p className="text-red-500 text-sm">Password is required</p>}
-                {errors.password?.type === "minLength" && <p className="text-red-500 text-sm">Minimum 6 characters</p>}
-                {errors.password?.type === "maxLength" && <p className="text-red-500 text-sm">Maximum 20 characters</p>}
+                {errors.password?.type === "required" && (
+                  <p className="text-red-500 text-sm">Password is required</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-500 text-sm">Minimum 6 characters</p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-500 text-sm">Maximum 20 characters</p>
+                )}
                 {errors.password?.type === "pattern" && (
-                  <p className="text-red-500 text-sm">Must include uppercase, lowercase, number & special character</p>
+                  <p className="text-red-500 text-sm">
+                    Must include uppercase, lowercase, number & special
+                    character
+                  </p>
                 )}
               </div>
 
@@ -129,8 +163,11 @@ const SignUp = () => {
 
             {/* Redirect */}
             <p className="text-sm text-center mt-4">
-              Already registered? 
-              <Link to="/login" className="text-orange-600 font-bold underline ml-1">
+              Already registered?
+              <Link
+                to="/login"
+                className="text-orange-600 font-bold underline ml-1"
+              >
                 Go to log in
               </Link>
             </p>
@@ -152,7 +189,11 @@ const SignUp = () => {
 
           {/* Illustration Section */}
           <div className="w-full lg:w-1/2">
-            <img src={authenticationImg2} alt="Signup Illustration" className="w-full" />
+            <img
+              src={authenticationImg2}
+              alt="Signup Illustration"
+              className="w-full"
+            />
           </div>
         </div>
       </div>
