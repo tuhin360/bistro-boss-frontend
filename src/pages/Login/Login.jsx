@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -19,7 +20,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log("state in the location login page", location.state);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -145,17 +145,7 @@ const Login = () => {
 
               {/* Social Login */}
               <div className="divider">Or sign in with</div>
-              <div className="flex justify-center gap-4">
-                <Link to="#" className="btn btn-outline btn-circle">
-                  <FaFacebookF />
-                </Link>
-                <Link to="#" className="btn btn-outline btn-circle">
-                  <FaGoogle />
-                </Link>
-                <Link to="#" className="btn btn-outline btn-circle">
-                  <FaGithub />
-                </Link>
-              </div>
+              <SocialLogin />
             </form>
           </div>
         </div>

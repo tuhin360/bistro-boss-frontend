@@ -8,6 +8,7 @@ import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -32,8 +33,7 @@ const SignUp = () => {
               name: data.name,
               email: data.email,
             };
-            axiosPublic.post("/users", userInfo)
-            .then((res) => {
+            axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
                 console.log("User created successfully:", res.data);
                 reset();
@@ -168,22 +168,14 @@ const SignUp = () => {
                 to="/login"
                 className="text-orange-600 font-bold underline ml-1"
               >
-                Go to log in
+                Go to login
               </Link>
             </p>
 
             {/* Social Login */}
             <p className="text-sm text-center mt-6">Or sign up with</p>
-            <div className="flex justify-center gap-4 mt-2">
-              <button className="btn btn-outline btn-circle text-lg">
-                <FaFacebookF />
-              </button>
-              <button className="btn btn-outline btn-circle text-lg">
-                <FaGoogle />
-              </button>
-              <button className="btn btn-outline btn-circle text-lg">
-                <FaGithub />
-              </button>
+            <div>
+              <SocialLogin />
             </div>
           </div>
 
