@@ -15,12 +15,12 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/contact", label: "Contact Us" },
-    { to: "/dashboard", label: "Dashboard" },
     { to: "/menu", label: "Our Menu" },
     { to: "/order/salad", label: "Order Food" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/contact", label: "Contact Us" },
     {
-      to: "/cart",
+      to: "/dashboard/cart",
       label: (
         <button className="flex justify-center items-center gap-2">
           <FaShoppingCart className="text-2xl" />
