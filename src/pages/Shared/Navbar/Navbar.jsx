@@ -3,11 +3,12 @@ import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-
+  const [cart] = useCart();
   const handleLogout = () => {
     logOut().catch((error) => console.log(error));
   };
@@ -23,7 +24,7 @@ const Navbar = () => {
       label: (
         <button className="flex justify-center items-center gap-2">
           <FaShoppingCart className="text-2xl" />
-          <div className="badge badge-secondary">+0</div>
+          <div className="badge badge-secondary">+{cart.length}</div>
         </button>
       ),
     },
