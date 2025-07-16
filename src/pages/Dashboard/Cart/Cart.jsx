@@ -12,7 +12,7 @@ const Cart = () => {
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You want to delete this item from your cart?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

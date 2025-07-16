@@ -10,7 +10,10 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
-import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import {
+  FaEyeSlash,
+  FaEye,
+} from "react-icons/fa";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
@@ -20,6 +23,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -95,13 +99,22 @@ const Login = () => {
                 <label className="block text-sm font-medium mb-1">
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Enter your password"
+                    className="w-full border border-gray-300 px-4 py-2 pr-10 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
               </div>
 
               {/* CAPTCHA */}

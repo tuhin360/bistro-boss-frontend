@@ -8,14 +8,18 @@ import {
   FaWallet,
   FaBars,
   FaTimes,
+  FaUsers,
 } from "react-icons/fa";
 import { MdHomeFilled, MdRateReview } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { IoMdMenu } from "react-icons/io";
 import useCart from "../hooks/useCart";
 import { Helmet } from "react-helmet-async";
+import { ImSpoonKnife } from "react-icons/im";
+import { TfiMenuAlt } from "react-icons/tfi";
+import { BiSolidBookBookmark } from "react-icons/bi";
 
-const dashboardLinks = [
+const UserLinks = [
   { to: "/dashboard/user-home", icon: <MdHomeFilled />, label: "User Home" },
   {
     to: "/dashboard/reservation",
@@ -28,6 +32,22 @@ const dashboardLinks = [
   { to: "/dashboard/booking", icon: <TbBrandBooking />, label: "My Booking" },
 ];
 
+const AdminLinks = [
+  { to: "/dashboard/adminHome", icon: <MdHomeFilled />, label: "Admin Home" },
+  {
+    to: "/dashboard/addItem",
+    icon: <ImSpoonKnife />,
+    label: "Add Item",
+  },
+  { to: "/dashboard/manageItems", icon: <TfiMenuAlt />, label: "Manage Items" },
+  {
+    to: "/dashboard/manageBookings",
+    icon: <BiSolidBookBookmark />,
+    label: "Manage Bookings",
+  },
+  { to: "/dashboard/allUsers", icon: <FaUsers />, label: "All Users" },
+];
+
 const mainLinks = [
   { to: "/", icon: <MdHomeFilled />, label: "Home" },
   { to: "/home", icon: <IoMdMenu />, label: "Menu" },
@@ -38,6 +58,8 @@ const mainLinks = [
 const Dashboard = () => {
   const [cart] = useCart();
   const [open, setOpen] = useState(false);
+  // TODO: get isAdmin value from the database
+  const isAdmin = true;
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-2 px-2 py-1 rounded hover:bg-orange-500 ${
@@ -63,13 +85,13 @@ const Dashboard = () => {
         {/* Sidebar */}
         <div
           className={`bg-orange-400 uppercase 
-    fixed z-50 top-14 
-    md:static md:block 
-    h-[calc(100vh-56px)] md:h-screen w-64 
-    transition-transform duration-300
-    ${open ? "translate-x-0" : "translate-x-full"} 
-    md:translate-x-0
-    md:left-0 md:right-auto right-0`}
+          fixed z-50 top-14 
+          md:static md:block 
+          h-[calc(100vh-56px)] md:h-screen w-64 
+          transition-transform duration-300
+          ${open ? "translate-x-0" : "translate-x-full"} 
+          md:translate-x-0
+          md:left-0 md:right-auto right-0`}
         >
           <Link
             to="/"
@@ -78,20 +100,41 @@ const Dashboard = () => {
             BISTRO BOSS
           </Link>
           <ul className="p-4 space-y-1">
-            {dashboardLinks.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  className={linkClass}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.icon}
-                  {link.to === "/dashboard/cart"
-                    ? `${link.label} (${cart.length})`
-                    : link.label}
-                </NavLink>
-              </li>
-            ))}
+            {isAdmin ? (
+              <>
+                {AdminLinks.map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      className={linkClass}
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.icon}
+                      {link.to === "/dashboard/cart"
+                        ? `${link.label} (${cart.length})`
+                        : link.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </>
+            ) : (
+              <>
+                {UserLinks.map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      className={linkClass}
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.icon}
+                      {link.to === "/dashboard/cart"
+                        ? `${link.label} (${cart.length})`
+                        : link.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </>
+            )}
 
             <div className="divider before:bg-white after:bg-white"></div>
 

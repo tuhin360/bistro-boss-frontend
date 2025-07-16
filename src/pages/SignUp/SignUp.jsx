@@ -6,11 +6,13 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
-import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import {FaEyeSlash, FaEye } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const axiosPublic = useAxiosPublic();
   const {
     register,
@@ -122,18 +124,28 @@ const SignUp = () => {
                 <label className="block text-sm font-medium mb-1">
                   Password
                 </label>
-                <input
-                  type="password"
-                  {...register("password", {
-                    required: true,
-                    minLength: 6,
-                    maxLength: 20,
-                    pattern:
-                      /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).*$/,
-                  })}
-                  placeholder="Enter your password"
-                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      maxLength: 20,
+                      pattern:
+                        /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).*$/,
+                    })}
+                    placeholder="Enter your password"
+                    className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+
                 {errors.password?.type === "required" && (
                   <p className="text-red-500 text-sm">Password is required</p>
                 )}
