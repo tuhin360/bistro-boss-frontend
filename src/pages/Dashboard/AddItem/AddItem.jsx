@@ -1,13 +1,33 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { ImSpoonKnife } from "react-icons/im";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItem = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  
+  const axiosPublic = useAxiosPublic();
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     console.log(data);
-    reset();
+    // image upload to imgbb and then get the URL
+    const formData = new FormData();
+    formData.append('image', data.image[0]);
+    const res = await axiosPublic.post(image_hosting_api, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(res.data);
+    // reset();
   };
 
   return (
@@ -19,26 +39,32 @@ const AddItem = () => {
 
       <div className="max-w-3xl mx-auto bg-gray-100 p-8 rounded shadow">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Recipe Name */}
           <div>
             <label className="block font-medium mb-1">
               Recipe name<span className="text-red-500">*</span>
             </label>
             <input
-              {...register("recipe", { required: true })}
+              {...register("name", { required: true })}
               type="text"
               placeholder="Recipe name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">Recipe name is required</p>
+            )}
           </div>
 
+          {/* Category & Price */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Category */}
             <div>
               <label className="block font-medium mb-1">
                 Category<span className="text-red-500">*</span>
               </label>
               <select
                 {...register("category", { required: true })}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
               >
                 <option value="">Category</option>
                 <option value="salad">Salad</option>
@@ -47,8 +73,12 @@ const AddItem = () => {
                 <option value="dessert">Dessert</option>
                 <option value="drink">Drink</option>
               </select>
+              {errors.category && (
+                <p className="text-red-500 text-sm mt-1">Category is required</p>
+              )}
             </div>
 
+            {/* Price */}
             <div>
               <label className="block font-medium mb-1">
                 Price<span className="text-red-500">*</span>
@@ -57,30 +87,45 @@ const AddItem = () => {
                 {...register("price", { required: true })}
                 type="number"
                 placeholder="Price"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
               />
+              {errors.price && (
+                <p className="text-red-500 text-sm mt-1">Price is required</p>
+              )}
             </div>
           </div>
 
+          {/* Recipe Details */}
           <div>
             <label className="block font-medium mb-1">
               Recipe Details<span className="text-red-500">*</span>
             </label>
             <textarea
-              {...register("details", { required: true })}
+              {...register("recipe", { required: true })}
               placeholder="Recipe Details"
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             ></textarea>
+            {errors.recipe && (
+              <p className="text-red-500 text-sm mt-1">Recipe details are required</p>
+            )}
           </div>
 
+          {/* Image */}
           <div>
+            <label className="block font-medium mb-1">
+              Upload Image<span className="text-red-500">*</span>
+            </label>
             <input
-              {...register("image")}
+              {...register("image", { required: true })}
               type="file"
-              className="file-input file-input-bordered w-full"
+              className="file-input file-input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             />
+            {errors.image && (
+              <p className="text-red-500 text-sm mt-1">Image is required</p>
+            )}
           </div>
 
+          {/* Submit Button */}
           <div>
             <button
               type="submit"
