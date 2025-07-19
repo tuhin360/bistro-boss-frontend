@@ -1,22 +1,14 @@
-
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import useMenu from "../../../hooks/useMenu";
 
 const ManageItems = () => {
+    const [menu, , refetch] = useMenu();
   const axiosSecure = useAxiosSecure();
 
-  const { data: menu = [], refetch } = useQuery({
-    queryKey: ["menu"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/menu");
-      return res.data;
-    },
-  });
-
-  const handleDeleteItem = async (id) => {
+  const handleDeleteItem = async (id, name) => {
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "You want to delete this item?",
@@ -32,7 +24,7 @@ const ManageItems = () => {
     try {
       const res = await axiosSecure.delete(`/menu/${id}`);
       if (res.data.deletedCount > 0) {
-        Swal.fire("Deleted!", "The item has been deleted.", "success");
+        Swal.fire(`${name} has been deleted.`, "", "success");
         refetch();
       }
     } catch (error) {
@@ -90,7 +82,7 @@ const ManageItems = () => {
                   </td>
                   <td>
                     <button
-                      onClick={() => handleDeleteItem(item._id)}
+                      onClick={() => handleDeleteItem(item._id,  item.name)}
                       className="btn btn-sm bg-red-500 hover:bg-red-700 text-white"
                     >
                       <FaTrash />
