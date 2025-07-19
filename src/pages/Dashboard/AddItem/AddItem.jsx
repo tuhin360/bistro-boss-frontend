@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { ImSpoonKnife } from "react-icons/im";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -15,17 +17,48 @@ const AddItem = () => {
   } = useForm();
   
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async(data) => {
     console.log(data);
     // image upload to imgbb and then get the URL
-    const formData = new FormData();
-    formData.append('image', data.image[0]);
-    const res = await axiosPublic.post(image_hosting_api, formData, {
+     const imageFile = {image: data.image[0]};
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
+    if(res.data.success) {
+       // now send the menu item data to the server with the image URL
+        const menuItem = {
+            name: data.name,
+            recipe: data.recipe,
+            image: res.data.data.display_url,
+            category: data.category,
+            price: parseFloat(data.price),
+        };
+        
+        const menuRes = await axiosSecure.post('/menu', menuItem);
+        if(menuRes.data.insertedId) {
+            Swal.fire({
+                title: `${data.name} is added to the menu.`,
+                icon: 'success',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            reset();
+        }else {
+            Swal.fire({
+                title: 'Failed to Add Item',
+                icon: 'error',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    }
+    
     console.log(res.data);
     // reset();
   };
