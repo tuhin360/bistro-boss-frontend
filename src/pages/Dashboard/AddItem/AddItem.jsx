@@ -15,52 +15,51 @@ const AddItem = () => {
     reset,
     formState: { errors },
   } = useForm();
-  
+
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
-  const onSubmit = async(data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    // console.log(data);
     // image upload to imgbb and then get the URL
-     const imageFile = {image: data.image[0]};
+    const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    if(res.data.success) {
-       // now send the menu item data to the server with the image URL
-        const menuItem = {
-            name: data.name,
-            recipe: data.recipe,
-            image: res.data.data.display_url,
-            category: data.category,
-            price: parseFloat(data.price),
-        };
-        
-        const menuRes = await axiosSecure.post('/menu', menuItem);
-        if(menuRes.data.insertedId) {
-            Swal.fire({
-                title: `${data.name} is added to the menu.`,
-                icon: 'success',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            reset();
-        }else {
-            Swal.fire({
-                title: 'Failed to Add Item',
-                icon: 'error',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-            });
-        }
+    if (res.data.success) {
+      // now send the menu item data to the server with the image URL
+      const menuItem = {
+        name: data.name,
+        recipe: data.recipe,
+        image: res.data.data.display_url,
+        category: data.category,
+        price: parseFloat(data.price),
+      };
+
+      const menuRes = await axiosSecure.post("/menu", menuItem);
+      if (menuRes.data.insertedId) {
+        Swal.fire({
+          title: `${data.name} is added to the menu.`,
+          icon: "success",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        reset();
+      } else {
+        Swal.fire({
+          title: "Failed to Add Item",
+          icon: "error",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
-    
-    console.log(res.data);
-    // reset();
+
+    // console.log(res.data);
   };
 
   return (
@@ -84,7 +83,9 @@ const AddItem = () => {
               className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             />
             {errors.name && (
-              <p className="text-red-500 text-sm mt-1">Recipe name is required</p>
+              <p className="text-red-500 text-sm mt-1">
+                Recipe name is required
+              </p>
             )}
           </div>
 
@@ -107,7 +108,9 @@ const AddItem = () => {
                 <option value="drink">Drink</option>
               </select>
               {errors.category && (
-                <p className="text-red-500 text-sm mt-1">Category is required</p>
+                <p className="text-red-500 text-sm mt-1">
+                  Category is required
+                </p>
               )}
             </div>
 
@@ -139,7 +142,9 @@ const AddItem = () => {
               className="textarea textarea-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             ></textarea>
             {errors.recipe && (
-              <p className="text-red-500 text-sm mt-1">Recipe details are required</p>
+              <p className="text-red-500 text-sm mt-1">
+                Recipe details are required
+              </p>
             )}
           </div>
 
