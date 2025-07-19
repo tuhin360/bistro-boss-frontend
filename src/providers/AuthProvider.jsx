@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
+
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
@@ -73,7 +74,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

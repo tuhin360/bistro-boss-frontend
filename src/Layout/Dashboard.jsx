@@ -18,6 +18,7 @@ import { Helmet } from "react-helmet-async";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { BiSolidBookBookmark } from "react-icons/bi";
+import useAdmin from "../hooks/useAdmin";
 
 const UserLinks = [
   { to: "/dashboard/user-home", icon: <MdHomeFilled />, label: "User Home" },
@@ -59,7 +60,7 @@ const Dashboard = () => {
   const [cart] = useCart();
   const [open, setOpen] = useState(false);
   // TODO: get isAdmin value from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-2 px-2 py-1 rounded hover:bg-orange-500 ${
