@@ -3,10 +3,13 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0).toFixed(2);
+  const totalPrice = cart
+    .reduce((total, item) => total + item.price, 0)
+    .toFixed(2);
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
@@ -61,9 +64,21 @@ const Cart = () => {
         <h2 className="text-lg md:text-2xl font-bold text-center uppercase">
           Total Price: ${totalPrice}
         </h2>
-        <button className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg">
-          Pay
-        </button>
+        {cart.length ? (
+          <Link to="/dashboard/payment">
+            {" "}
+            <button className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg">
+              Pay
+            </button>{" "}
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Pay
+          </button>
+        )}
       </div>
 
       {/* Table */}
@@ -86,10 +101,7 @@ const Cart = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                        />
+                        <img src={item.image} alt={item.name} />
                       </div>
                     </div>
                   </div>

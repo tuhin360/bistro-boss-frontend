@@ -27,7 +27,7 @@ const UserLinks = [
     icon: <FaCalendarAlt />,
     label: "Reservation",
   },
-  { to: "/dashboard/payment", icon: <FaWallet />, label: "Payment History" },
+  { to: "/dashboard/paymentHistory", icon: <FaWallet />, label: "Payment History" },
   { to: "/dashboard/cart", icon: <FaShoppingCart />, label: "My Cart" },
   { to: "/dashboard/review", icon: <MdRateReview />, label: "Add Review" },
   { to: "/dashboard/booking", icon: <TbBrandBooking />, label: "My Booking" },
