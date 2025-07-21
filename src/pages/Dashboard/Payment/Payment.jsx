@@ -1,4 +1,9 @@
+import { loadStripe } from "@stripe/stripe-js";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { Elements } from "@stripe/react-stripe-js";
+
+// TODO: ADD YOUR STRIPE PUBLIC KEY HERE
+const stripePromise = loadStripe('')
 
 
 const Payment = () => {
@@ -8,6 +13,11 @@ const Payment = () => {
                 heading={"Payment"}
                 subHeading={"Please pay your bill"}
             ></SectionTitle>
+            <div>
+                <Elements stripe={stripePromise}>
+                    
+                <Elements/>
+            </div>
         </div>
     );
 };

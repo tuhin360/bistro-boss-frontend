@@ -22,6 +22,7 @@ const CheckoutForm = () => {
       type: "card",
       card,
     });
+    
     if (error) {
       console.log("[error]", error);
     } else {
