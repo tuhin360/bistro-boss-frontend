@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import useMenu from "../../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
     const [menu, , refetch] = useMenu();
@@ -33,10 +34,10 @@ const ManageItems = () => {
     }
   };
 
-  const handleEditItem = (id) => {
-    // TODO: Redirect to edit page or open modal
-    console.log("Edit item:", id);
-  };
+  // const handleEditItem = (id) => {
+  //   // TODO: Redirect to edit page or open modal
+  //   console.log("Edit item:", id);
+  // };
 
   return (
     <div className="bg-gray-100 p-10 rounded-lg shadow-md min-h-screen">
@@ -73,12 +74,16 @@ const ManageItems = () => {
                   <td>{item.name}</td>
                   <td>${item.price}</td>
                   <td>
-                    <button
-                      onClick={() => handleEditItem(item._id)}
-                      className="btn btn-sm bg-[#D99904] hover:bg-[#c18b02] text-white"
+                    <Link
+                      to={`/dashboard/updateItem/${item._id}`}
                     >
-                      <FaEdit />
-                    </button>
+                      <button
+                       
+                        className="btn btn-sm bg-[#D99904] hover:bg-[#c18b02] text-white"
+                      >
+                        <FaEdit />
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button

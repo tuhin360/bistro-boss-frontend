@@ -59,7 +59,7 @@ const mainLinks = [
 const Dashboard = () => {
   const [cart] = useCart();
   const [open, setOpen] = useState(false);
-  // TODO: get isAdmin value from the database
+  // Check if the user is an admin
   const [isAdmin] = useAdmin();
 
   const linkClass = ({ isActive }) =>

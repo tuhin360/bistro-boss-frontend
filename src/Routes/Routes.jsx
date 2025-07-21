@@ -14,7 +14,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItem from "../pages/Dashboard/AddItem/AddItem";
 import AdminRoutes from "./AdminRoutes";
 import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
- 
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 
 export const router = createBrowserRouter([
   {
@@ -45,31 +45,65 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
-      }
+      },
     ],
   },
   {
-    path: 'dashboard',
-    element: <PrivateRoutes><Dashboard /></PrivateRoutes>,
+    path: "dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
     children: [
+      {
+        index: true,
+        element: (
+          <div className="md:text-3xl flex justify-center items-center md:h-screen text-gray-600 font-bold">
+            Welcome to your Dashboard
+          </div>
+        ),
+      },
       // normal user routes
       {
-        path: 'cart',
+        path: "cart",
         element: <Cart />,
       },
       // admin only routes
       {
-        path: 'allUsers',
-        element: <AdminRoutes><AllUsers /></AdminRoutes>
+        path: "allUsers",
+        element: (
+          <AdminRoutes>
+            <AllUsers />
+          </AdminRoutes>
+        ),
       },
       {
-        path: 'addItem',
-        element: <AdminRoutes><AddItem /></AdminRoutes>
+        path: "addItem",
+        element: (
+          <AdminRoutes>
+            <AddItem />
+          </AdminRoutes>
+        ),
       },
       {
-        path: 'manageItems',
-        element: <AdminRoutes><ManageItems /></AdminRoutes>
-      }
+        path: "manageItems",
+        element: (
+          <AdminRoutes>
+            <ManageItems />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "updateItem/:id",
+        element: (
+          <AdminRoutes>
+            <UpdateItem />
+          </AdminRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
+      },
     ],
-  }
+  },
 ]);
