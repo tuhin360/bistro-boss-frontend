@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
   const [cardError, setCardError] = useState("");
@@ -12,7 +13,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const { user } = useAuth();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
@@ -72,10 +73,10 @@ const CheckoutForm = () => {
       console.log("PaymentIntent", paymentIntent);
 
       if (paymentIntent.status === "succeeded") {
-        console.log('Transaction id:', paymentIntent.id);
+        console.log("Transaction id:", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
-         // save payment to database
+        // save payment to database
         const paymentDetails = {
           email: user?.email,
           transactionId: paymentIntent.id,
@@ -86,18 +87,32 @@ const CheckoutForm = () => {
           status: "pending",
         };
 
-        axiosSecure
-          .post("/payments", paymentDetails)
-          .then((res) => {
-            if (res.data.insertedId) {
-              console.log("Payment saved in DB");
-              // optionally show a success toast
-
-            }
-          })
-          .catch((err) => {
-            console.error("Error saving payment:", err);
+        const res = await axiosSecure.post("/payments", paymentDetails);
+        console.log("Payment saved:", res.data);
+        refetch();
+        if (res.data?.success) {
+          Swal.fire({
+            title: "Payment Successful!",
+            text: `Transaction ID: ${paymentIntent.id}`,
+            icon: "success",
+            confirmButtonText: "OK",
           });
+        } else {
+          Swal.fire({
+            title: "Payment Failed!",
+            text: "There was an issue saving your payment. Please try again.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            title: "Payment Successful!",
+            text: `Transaction ID: ${paymentIntent.id}`,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        }
       }
     }
 
@@ -124,8 +139,9 @@ const CheckoutForm = () => {
         />
       </div>
 
-     
-      {cardError && <div className="text-red-500 text-sm mt-2">{cardError}</div>}
+      {cardError && (
+        <div className="text-red-500 text-sm mt-2">{cardError}</div>
+      )}
 
       <button
         type="submit"
