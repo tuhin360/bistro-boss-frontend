@@ -7,7 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 const CheckoutForm = () => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [processing, setProcessing] = useState(false); // ✅ optional: disable button during processing
+  const [processing, setProcessing] = useState(false); // disable button during processing
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
@@ -17,7 +17,7 @@ const CheckoutForm = () => {
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-  // ✅ fetch clientSecret whenever cart total changes
+  // fetch clientSecret whenever cart total changes
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
@@ -75,26 +75,29 @@ const CheckoutForm = () => {
         console.log('Transaction id:', paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
-        // ✅ optionally save payment to database
-        // const paymentDetails = {
-        //   email: user?.email,
-        //   transactionId: paymentIntent.id,
-        //   price: totalPrice,
-        //   date: new Date(),
-        //   cartItems: cart.map((item) => item._id),
-        // };
+         // save payment to database
+        const paymentDetails = {
+          email: user?.email,
+          transactionId: paymentIntent.id,
+          price: totalPrice,
+          date: new Date(), // utc date convert. use moment js to convert to local time if needed
+          cartIds: cart.map((item) => item._id),
+          menuIds: cart.map((item) => item.menuId),
+          status: "pending",
+        };
 
-        // axiosSecure
-        //   .post("/payments", paymentDetails)
-        //   .then((res) => {
-        //     if (res.data.insertedId) {
-        //       console.log("Payment saved in DB");
-        //       // optionally show a success toast
-        //     }
-        //   })
-        //   .catch((err) => {
-        //     console.error("Error saving payment:", err);
-        //   });
+        axiosSecure
+          .post("/payments", paymentDetails)
+          .then((res) => {
+            if (res.data.insertedId) {
+              console.log("Payment saved in DB");
+              // optionally show a success toast
+
+            }
+          })
+          .catch((err) => {
+            console.error("Error saving payment:", err);
+          });
       }
     }
 
@@ -121,7 +124,7 @@ const CheckoutForm = () => {
         />
       </div>
 
-      {/* ✅ show error if any */}
+     
       {cardError && <div className="text-red-500 text-sm mt-2">{cardError}</div>}
 
       <button
