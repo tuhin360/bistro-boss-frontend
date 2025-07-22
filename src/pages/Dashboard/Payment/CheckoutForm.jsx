@@ -4,21 +4,23 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [processing, setProcessing] = useState(false); // disable button during processing
+  const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const [cart, refetch] = useCart();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-  // fetch clientSecret whenever cart total changes
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
@@ -38,9 +40,9 @@ const CheckoutForm = () => {
     if (!card) return;
 
     setProcessing(true);
-    setCardError(""); // reset previous errors
+    setCardError("");
 
-    // ✅ create payment method
+    // Step 1: create payment method
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -54,7 +56,7 @@ const CheckoutForm = () => {
 
     console.log("[PaymentMethod]", paymentMethod);
 
-    // ✅ confirm the payment
+    // Step 2: confirm payment intent
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -69,33 +71,39 @@ const CheckoutForm = () => {
     if (confirmError) {
       setCardError(confirmError.message);
       console.log("confirmError", confirmError);
-    } else {
-      console.log("PaymentIntent", paymentIntent);
+      setProcessing(false);
+      return;
+    }
 
-      if (paymentIntent.status === "succeeded") {
-        console.log("Transaction id:", paymentIntent.id);
-        setTransactionId(paymentIntent.id);
+    console.log("PaymentIntent", paymentIntent);
 
-        // save payment to database
-        const paymentDetails = {
-          email: user?.email,
-          transactionId: paymentIntent.id,
-          price: totalPrice,
-          date: new Date(), // utc date convert. use moment js to convert to local time if needed
-          cartIds: cart.map((item) => item._id),
-          menuIds: cart.map((item) => item.menuId),
-          status: "pending",
-        };
+    if (paymentIntent.status === "succeeded") {
+      console.log("Transaction id:", paymentIntent.id);
+      setTransactionId(paymentIntent.id);
 
+      const paymentDetails = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price: totalPrice,
+        date: new Date(),
+        cartIds: cart.map((item) => item._id),
+        menuIds: cart.map((item) => item.menuId),
+        status: "pending",
+      };
+
+      try {
         const res = await axiosSecure.post("/payments", paymentDetails);
         console.log("Payment saved:", res.data);
         refetch();
-        if (res.data?.success) {
+
+        if (res.data?.paymentInsertedId) {
           Swal.fire({
             title: "Payment Successful!",
             text: `Transaction ID: ${paymentIntent.id}`,
             icon: "success",
             confirmButtonText: "OK",
+          }).then(() => {
+            navigate("/dashboard/paymentHistory");
           });
         } else {
           Swal.fire({
@@ -105,14 +113,14 @@ const CheckoutForm = () => {
             confirmButtonText: "OK",
           });
         }
-        if (res.data?.paymentResult?.insertedId) {
-          Swal.fire({
-            title: "Payment Successful!",
-            text: `Transaction ID: ${paymentIntent.id}`,
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({
+          title: "Server Error!",
+          text: "Please try again later.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
     }
 
@@ -148,8 +156,9 @@ const CheckoutForm = () => {
         disabled={!stripe || !clientSecret || processing}
         className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
       >
-        {processing ? "Processing..." : "Pay"}
+        {processing ? "Processing..." : `Pay $${totalPrice.toFixed(2)}`}
       </button>
+
       <p className="text-green-500 text-sm mt-2">
         {transactionId && `Transaction completed with ID: ${transactionId}`}
       </p>

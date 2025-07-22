@@ -85,12 +85,12 @@ const Cart = () => {
       <div className="overflow-x-auto w-full mt-6">
         <table className="table table-zebra w-full">
           <thead>
-            <tr>
-              <th>No</th>
+            <tr className="bg-yellow-600 text-white">
+              <th className="rounded-tl-md">No</th>
               <th>Item Image</th>
               <th>Item Name</th>
               <th>Price</th>
-              <th>Action</th>
+              <th className="rounded-tr-md">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -107,7 +107,7 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="font-bold">{item.name}</div>
+                  <div>{item.name}</div>
                 </td>
                 <td>${item.price}</td>
                 <td>
