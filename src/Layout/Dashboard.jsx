@@ -21,7 +21,7 @@ import { BiSolidBookBookmark } from "react-icons/bi";
 import useAdmin from "../hooks/useAdmin";
 
 const UserLinks = [
-  { to: "/dashboard/user-home", icon: <MdHomeFilled />, label: "User Home" },
+  { to: "/dashboard/userHome", icon: <MdHomeFilled />, label: "User Home" },
   {
     to: "/dashboard/reservation",
     icon: <FaCalendarAlt />,
