@@ -21,12 +21,12 @@ const MenuItem = ({ item }) => {
         alt={name}
       />
       <div className="flex-1 text-center md:text-left">
-        <h3 className="uppercase font-semibold text-lg md:text-xl mb-1">
+        <h3 className="uppercase font-cinzel font-semibold text-lg md:text-xl mb-1">
           {name} <span className="hidden md:inline">----------</span>
         </h3>
-        <p className="text-sm text-gray-600">{recipe}</p>
+        <p className="text-sm md:text-base text-gray-600 font-inter">{recipe}</p>
       </div>
-      <p className="text-[#BB8506] font-bold">${price}</p>
+      <p className="text-[#BB8506] font-bold font-inter text-xl">${price}</p>
     </div>
   );
 };

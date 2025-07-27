@@ -87,21 +87,21 @@ const FoodCard = ({ item }) => {
           alt="img"
           className="w-full h-48 sm:h-52 md:h-64 object-cover rounded-t-lg"
         />
-        <span className="absolute top-0 right-0 bg-black text-white px-2 py-1 rounded-md mr-2 mt-2">
+        <span className="absolute top-0 right-0 bg-black text-white px-2 py-1 rounded-md mr-2 mt-2 font-inter text-base">
           ${price}
         </span>
       </div>
       <div className="card-body items-center text-center ">
-        <h2 className="card-title text-base sm:text-lg md:text-xl font-semibold">
+        <h2 className="card-title text-base sm:text-lg md:text-2xl font-semibold font-inter">
           {name}
         </h2>
-        <p className="text-xs sm:text-sm md:text-base text-gray-600">
+        <p className="text-xs sm:text-sm md:text-base text-[#737373] font-inter">
           {recipe}
         </p>
         <div className="card-actions">
           <button
             onClick={() => handleAddToCart(item)}
-            className="btn btn-outline uppercase text-orange-500 border-0 border-b-4 md:hover:bg-black md:hover:border-b-black transition duration-200"
+            className="btn btn-outline uppercase text-[#BB8506] border-0 border-b-4 md:hover:bg-black md:hover:border-b-black transition duration-200 font-inter text-xl"
           >
             Add To Cart
           </button>

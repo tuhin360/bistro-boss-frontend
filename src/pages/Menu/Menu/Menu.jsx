@@ -47,7 +47,7 @@ const Menu = () => {
         items={dessert}
         title={"dessert"}
         description={
-          "Indulge your sweet tooth with our delightful desserts. From cakes to pastries, every bite is a treat!"
+          "From cakes to pastries, every bite is a treat!"
         }
         img={dessertImg}
       ></MenuCategory>
@@ -57,7 +57,7 @@ const Menu = () => {
         items={pizza}
         title={"pizza"}
         description={
-          "Enjoy oven-fresh pizzas loaded with cheese and toppings. Every slice is crafted to satisfy your cravings."
+          "Enjoy oven-fresh pizzas loaded with cheese and toppings."
         }
         img={pizzaImg}
       ></MenuCategory>

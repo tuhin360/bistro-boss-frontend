@@ -1,5 +1,6 @@
 /* Remove default dot look and style as numbers */
 .swiper-pagination-bullet {
+  font-family: 'Inter', sans-serif; /* Use Inter font */
   font-size: 1.25rem; /* Larger number */
   font-weight: bold; /* Bold text */
   color: #333; /* Normal text color */

@@ -22,16 +22,16 @@ const Featured = () => {
         />
 
         <div className="text-center md:text-left max-w-md space-y-3">
-          <p className="text-sm text-gray-200">May 19, 2025</p>
-          <h3 className="text-xl font-semibold uppercase text-gray-100">
+          <p className="text-sm text-gray-200 font-inter md:text-2xl">May 19, 2025</p>
+          <h3 className="text-xl font-semibold uppercase text-gray-100 md:text-2xl font-inter">
             Where can I get some?
           </h3>
-          <p className="text-gray-200 text-sm">
+          <p className="text-gray-200 text-sm md:text-xl font-inter">
             Discover the best places to find what you're looking for, quickly
             and easily.
           </p>
           <Link to="/read-more">
-          <button className="btn btn-outline uppercase  text-white border-0 border-b-4 hover:border-b-4 border-b-white md:hover:border-b-orange md:hover:text-white md:hover:bg-black">
+          <button className="btn btn-outline uppercase  text-white border-0 border-b-4 hover:border-b-4 border-b-white md:hover:border-b-orange md:hover:text-white md:hover:bg-black font-inter md:text-lg">
             Read More
           </button>
           </Link>

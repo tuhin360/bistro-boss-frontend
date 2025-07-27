@@ -46,7 +46,7 @@ const Category = () => {
               className="w-full shadow-md hover:shadow-xl hover:scale-105 transition duration-500 ease-in-out object-cover"
             />
 
-            <h3 className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl lg:text-4xl uppercase text-white py-2">
+            <h3 className="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl  uppercase text-white py-2 font-cinzel">
               {slide.title}
             </h3>
           </SwiperSlide>

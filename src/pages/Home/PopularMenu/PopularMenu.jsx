@@ -20,7 +20,7 @@ const PopularMenu = () => {
       </div>
       <div className="flex justify-center mt-10">
         <Link to="/menu">
-          <button className="btn btn-outline uppercase  text-black border-0 border-b-4 border-b-black md:hover:border-b-orange-500 md:hover:text-orange-500 ">
+          <button className="btn btn-outline uppercase  text-black border-0 border-b-4 border-b-black md:hover:border-b-orange-500 md:hover:text-orange-500 font-inter md:text-lg">
             View Full Menu
           </button>
         </Link>

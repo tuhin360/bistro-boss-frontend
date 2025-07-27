@@ -25,9 +25,9 @@ const Navbar = () => {
         <div className="relative group cursor-pointer">
           <button className="relative group focus:outline-none">
             <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-green-600 to-green-800 border-[3px] border-yellow-500 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
-              <FaShoppingCart className="text-white text-xl sm:text-2xl" />
+              <FaShoppingCart className="text-white text-lg sm:text-2xl" />
             </div>
-            <div className="absolute -bottom-1 -right-1 bg-red-500 text-black text-[10px] sm:text-[11px] min-w-[16px] sm:min-w-[18px] h-[16px] sm:h-[18px] px-[4px] sm:px-[5px] flex items-center justify-center rounded-full font-bold   shadow-sm">
+            <div className="absolute -bottom-1 -right-1 bg-red-500 text-black text-[9px] sm:text-[11px] min-w-[16px] sm:min-w-[18px] h-[16px] sm:h-[18px] px-[4px] sm:px-[5px] flex items-center justify-center rounded-full font-bold font-inter shadow-sm">
               {cart.length}
             </div>
           </button>
@@ -42,7 +42,9 @@ const Navbar = () => {
         to={link.to}
         className={({ isActive }) =>
           `block px-3 py-2 font-medium uppercase transition duration-300 ease-out transform hover:scale-105 ${
-            isActive ? "text-yellow-400" : "hover:text-yellow-300"
+            isActive
+              ? "text-yellow-400 text-lg sm:text-xl font-inter font-extrabold"
+              : "hover:text-yellow-300 text-lg sm:text-xl font-inter font-extrabold"
           }`
         }
         onClick={() => setMenuOpen(false)}
@@ -57,10 +59,11 @@ const Navbar = () => {
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
         <Link
           to="/"
-          className="text-xl font-bold tracking-wider text-white transition duration-300 ease-out transform hover:scale-105"
+          className="text-2xl sm:text-3xl font-extrabold tracking-wider text-white transition duration-300 ease-out transform hover:scale-105 font-cinzel"
         >
-          BISTRO BOSS <br />
-          <span className="text-sm text-white tracking-[0.50em] block w-full  ">
+          BISTRO BOSS
+          <br />
+          <span className="text-base sm:text-xl text-white tracking-[0.50em] block w-full font-extrabold font-cinzel">
             Restaurant
           </span>
         </Link>
@@ -94,7 +97,7 @@ const Navbar = () => {
               )}
               <button
                 onClick={handleLogout}
-                className="text-sm uppercase hover:text-yellow-400 transition duration-300 ease-out transform hover:scale-105"
+                className="text-lg sm:text-xl font-inter font-extrabold uppercase hover:text-yellow-400 transition duration-300 ease-out transform hover:scale-105"
               >
                 Logout
               </button>
@@ -105,7 +108,7 @@ const Navbar = () => {
                 to="/login"
                 className={({ isActive }) =>
                   `block px-3 py-2 font-medium uppercase transition-colors duration-300 ease-out transform hover:scale-105 ${
-                    isActive ? "text-yellow-400" : "hover:text-yellow-300"
+                    isActive ? "text-yellow-400 text-lg sm:text-xl font-inter font-extrabold" : "hover:text-yellow-300 text-lg sm:text-xl font-inter font-extrabold"
                   }`
                 }
               >
@@ -130,7 +133,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          <ul className="flex flex-col space-y-2 uppercase flex-grow">
+          <ul className="flex flex-col space-y-2 uppercase flex-grow font-inter font-extrabold">
             {navOptions}
           </ul>
 
@@ -143,7 +146,7 @@ const Navbar = () => {
                   className="w-10 h-10 rounded-full object-cover border border-yellow-400"
                 />
               )}
-              <span className="text-yellow-300 text-sm">
+              <span className="text-yellow-300 text-sm font-inter font-extrabold">
                 {user.displayName}
               </span>
               <button
@@ -151,7 +154,7 @@ const Navbar = () => {
                   handleLogout();
                   setMenuOpen(false);
                 }}
-                className="uppercase text-sm hover:text-yellow-400"
+                className="uppercase text-sm hover:text-yellow-400 sm:text-xl font-inter font-extrabold"
               >
                 Logout
               </button>
@@ -159,7 +162,7 @@ const Navbar = () => {
           ) : (
             <NavLink
               to="/login"
-              className="mt-4 text-sm hover:text-yellow-400"
+              className="mt-4 text-sm hover:text-yellow-400 font-inter font-extrabold uppercase"
               onClick={() => setMenuOpen(false)}
             >
               Login

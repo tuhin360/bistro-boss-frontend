@@ -20,10 +20,10 @@ const Cover = ({ img, title, description }) => {
         ></div>
 
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="mb-5 text-2xl  md:text-4xl lg:text-5xl uppercase  font-bold">
+          <h1 className="mb-5 text-2xl  md:text-4xl lg:text-5xl uppercase  font-bold font-cinzel">
             {title}
           </h1>
-          <p className=" mb-5 text-sm md:text-base lg:text-lg ">
+          <p className=" mb-5 text-sm md:text-base lg:text-2xl font-cinzel">
             {description}
           </p>
         </div>

@@ -41,10 +41,10 @@ const Testimonials = () => {
                 className="mx-auto mb-4"
               />
               <Quote className="mx-auto text-black size-12 rotate-180 mb-4" />
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4">
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 font-inter">
                 {review.details}
               </p>
-              <h3 className="text-base sm:text-lg md:text-2xl text-orange-500 font-semibold">
+              <h3 className="text-base sm:text-lg md:text-2xl text-orange-500 font-semibold font-inter">
                 {review.name}
               </h3>
             </div>

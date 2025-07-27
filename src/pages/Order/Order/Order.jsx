@@ -39,12 +39,12 @@ const Order = () => {
         className="text-center my-8"
       >
         <TabList>
-          <Tab className="react-tabs__tab">Salads</Tab>
-          <Tab className="react-tabs__tab">Pizza</Tab>
-          <Tab className="react-tabs__tab">Soups</Tab>
-          <Tab className="react-tabs__tab">Desserts</Tab>
-          <Tab className="react-tabs__tab">Drinks</Tab>
-          <Tab className="react-tabs__tab">Offered</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Salads</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Pizza</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Soups</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Desserts</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Drinks</Tab>
+          <Tab className="react-tabs__tab font-inter text-base md:text-2xl">Offered</Tab>
         </TabList>
         <TabPanel>
           <OrderTab items={salad}></OrderTab>

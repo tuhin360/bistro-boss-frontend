@@ -46,7 +46,7 @@ const OrderTab = ({ items }) => {
           <SwiperSlide key={pageIndex}>
             <div
               ref={(el) => (slideRefs.current[pageIndex] = el)}
-              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center mb-10 ${
+              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center  mb-10 ${
                 activeSlide === pageIndex ? "fade-in" : ""
               }`}
             >
