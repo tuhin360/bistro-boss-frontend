@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../pages/Shared/Footer/Footer";
 import Navbar from "../pages/Shared/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
+import FloatingContactButtons from "../components/FloatingContactButtons/FloatingContactButtons";
 const Main = () => {
   const location = useLocation();
   //   console.log(location);
@@ -14,7 +15,8 @@ const Main = () => {
     <div>
       {noHeaderFooter || <Navbar />}
       <Outlet />
-      {noHeaderFooter || <Footer />}
+      {noHeaderFooter || <Footer />} 
+      <FloatingContactButtons/>
     </div>
   );
 };
