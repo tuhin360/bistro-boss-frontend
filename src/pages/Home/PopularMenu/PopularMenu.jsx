@@ -1,19 +1,14 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 import useMenu from "../../../hooks/useMenu";
+import { Link } from "react-router-dom";
+
 
 const PopularMenu = () => {
   const [menu] = useMenu();
   const popular = menu.filter((item) => item.category === "popular");
 
-  // useEffect(() => {
-  //   fetch("menu.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const popularItems = data.filter((item) => item.category === "popular");
-  //       setMenu(popularItems);
-  //     });
-  // }, []);
+  
 
   return (
     <section className="mb-12">
@@ -24,9 +19,11 @@ const PopularMenu = () => {
         ))}
       </div>
       <div className="flex justify-center mt-10">
-        <button className="btn btn-outline uppercase  text-black border-0 border-b-4 border-b-black md:hover:border-b-orange-500 md:hover:text-orange-500 ">
-          View Full Menu
-        </button>
+        <Link to="/menu">
+          <button className="btn btn-outline uppercase  text-black border-0 border-b-4 border-b-black md:hover:border-b-orange-500 md:hover:text-orange-500 ">
+            View Full Menu
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -1,8 +1,20 @@
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const MenuItem = ({ item }) => {
   const { name, image, recipe, price } = item;
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
-    <div className="flex flex-col md:flex-row md:items-start items-center gap-4 p-4 border-b">
+    <div
+      className="flex flex-col md:flex-row md:items-start items-center gap-4 p-4 border-b"
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+      data-aos-delay="300"
+    >
       <img
         className="w-[100px] h-[100px] object-cover rounded-[0_200px_200px_200px]"
         src={image}

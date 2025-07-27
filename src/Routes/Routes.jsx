@@ -19,6 +19,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import ReadMore from "../pages/Home/ReadMore/ReadMore";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignUp />,
       },
+      {
+        path: "read-more",
+        element: <ReadMore/>
+      }
     ],
   },
   {

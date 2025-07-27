@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const FoodCard = ({ item }) => {
   const { image, name, price, recipe, _id } = item;
@@ -16,15 +19,16 @@ const FoodCard = ({ item }) => {
   const handleAddToCart = (item) => {
     if (user && user.email) {
       // send cart item data to the database
-      const cartItem = { 
+      const cartItem = {
         menuId: _id,
         email: user.email,
         name: name,
         image: image,
         price: price,
-      }
-      axiosSecure.post('/carts', cartItem)
-        .then(response => {
+      };
+      axiosSecure
+        .post("/carts", cartItem)
+        .then((response) => {
           if (response.data.insertedId) {
             Swal.fire({
               title: `${name} Added to Cart`,
@@ -35,8 +39,11 @@ const FoodCard = ({ item }) => {
           }
           refetch(); // refetch the cart to update the cart item count
         })
-        .catch(error => {
-          console.error("There was an error adding the item to the cart!", error);
+        .catch((error) => {
+          console.error(
+            "There was an error adding the item to the cart!",
+            error
+          );
           Swal.fire({
             title: "Error",
             text: "There was an error adding the item to the cart. Please try again later.",
@@ -56,15 +63,24 @@ const FoodCard = ({ item }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           // send user to login page
-          navigate("/login", {state:{from: location}} );
+          navigate("/login", { state: { from: location } });
         }
       });
     }
     // console.log("Item added to cart:", item, user.email);
   };
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <div className="card w-full max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md bg-base-100 shadow-xl hover:shadow-xl transition-shadow duration-300 my-4 md:my-6">
+    <div
+      className="card w-full max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md bg-base-100 shadow-xl hover:shadow-xl transition-shadow duration-300 my-4 md:my-6"
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+      data-aos-delay="300"
+    >
       <div className="relative">
         <img
           src={image}

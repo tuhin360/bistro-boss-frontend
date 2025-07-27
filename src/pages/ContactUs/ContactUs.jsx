@@ -105,36 +105,4 @@ const ContactUs = () => {
 
 export default ContactUs;
 
-
-// TODO: WHATSUP AND CALL BUTTONS
-// import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
-
-// const ContactUs = () => {
-//   return (
-//     <div className="flex gap-4 flex-wrap justify-center mt-2">
-//       {/* Call Button */}
-//       <a
-//         href="tel:+8801300130885"
-//         className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition mt-20"
-//         aria-label="Call Us"
-//       >
-//         <FaPhoneAlt />
-//         <span>Call</span>
-//       </a>
-
-//       {/* WhatsApp Button */}
-//       <a
-//         href="https://wa.me/8801300130885"
-//         target="_blank"
-//         rel="noopener noreferrer"
-//         className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition mt-20"
-//         aria-label="WhatsApp Us"
-//       >
-//         <FaWhatsapp />
-//         <span>WhatsApp</span>
-//       </a>
-//     </div>
-//   );
-// };
-
-// export default ContactUs;
+ 

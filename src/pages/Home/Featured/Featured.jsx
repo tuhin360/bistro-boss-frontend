@@ -1,5 +1,6 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
+import { Link } from "react-router-dom";
 
 const Featured = () => {
   return (
@@ -17,7 +18,7 @@ const Featured = () => {
         <img
           src={featuredImg}
           alt="Featured Item"
-          className="w-full md:w-1/2 rounded shadow"
+          className="w-full md:w-1/2 rounded shadow "
         />
 
         <div className="text-center md:text-left max-w-md space-y-3">
@@ -29,9 +30,11 @@ const Featured = () => {
             Discover the best places to find what you're looking for, quickly
             and easily.
           </p>
-         <button className="btn btn-outline uppercase  text-white border-0 border-b-4 hover:border-b-4 border-b-white md:hover:border-b-orange md:hover:text-white md:hover:bg-black">
-          Read More
-        </button>
+          <Link to="/read-more">
+          <button className="btn btn-outline uppercase  text-white border-0 border-b-4 hover:border-b-4 border-b-white md:hover:border-b-orange md:hover:text-white md:hover:bg-black">
+            Read More
+          </button>
+          </Link>
         </div>
       </div>
     </div>

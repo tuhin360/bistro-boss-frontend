@@ -1,12 +1,27 @@
-import React from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const ChefRecommendCard = ({ item }) => {
   const { title, description, image } = item;
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
-    <div className="card w-full max-w-sm bg-base-100 shadow-xl">
+    <div
+      className="card w-full max-w-sm bg-base-100 shadow-xl"
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+      data-aos-delay="300"
+    >
       <figure>
-        <img src={image} alt={title} className="w-full aspect-square overflow-hidden" />
+        <img
+          src={image}
+          alt={title}
+          className="w-full aspect-square object-cover rounded-t-lg shadow-md transform transition-transform duration-500 ease-in-out hover:scale-105"
+        />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title text-lg md:text-xl">{title}</h2>
