@@ -4,10 +4,12 @@ import { Menu, X } from "lucide-react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
   const handleLogout = () => {
     logOut().catch((error) => console.log(error));
@@ -17,7 +19,10 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/menu", label: "Our Menu" },
     { to: "/order/salad", label: "Order Food" },
-    { to: "/dashboard", label: "Dashboard" },
+    {
+      to: isAdmin ? "/dashboard/adminHome" : "/dashboard/userHome",
+      label: "Dashboard",
+    },
     { to: "/contact", label: "Contact Us" },
     {
       to: "/dashboard/cart",
@@ -108,7 +113,9 @@ const Navbar = () => {
                 to="/login"
                 className={({ isActive }) =>
                   `block px-3 py-2 font-medium uppercase transition-colors duration-300 ease-out transform hover:scale-105 ${
-                    isActive ? "text-yellow-400 text-lg sm:text-xl font-inter font-extrabold" : "hover:text-yellow-300 text-lg sm:text-xl font-inter font-extrabold"
+                    isActive
+                      ? "text-yellow-400 text-lg sm:text-xl font-inter font-extrabold"
+                      : "hover:text-yellow-300 text-lg sm:text-xl font-inter font-extrabold"
                   }`
                 }
               >

@@ -154,7 +154,7 @@ const CheckoutForm = () => {
       <button
         type="submit"
         disabled={!stripe || !clientSecret || processing}
-        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50 font-inter"
       >
         {processing ? "Processing..." : `Pay $${totalPrice.toFixed(2)}`}
       </button>

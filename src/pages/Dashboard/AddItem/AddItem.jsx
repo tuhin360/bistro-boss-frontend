@@ -73,17 +73,17 @@ const AddItem = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Recipe Name */}
           <div>
-            <label className="block font-medium mb-1">
-              Recipe name<span className="text-red-500">*</span>
+            <label className="block  mb-1 font-inter text-xl font-semibold ">
+              Recipe name* 
             </label>
             <input
               {...register("name", { required: true })}
               type="text"
               placeholder="Recipe name"
-              className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
+              className="input input-bordered w-full font-inter text-xl font-normal focus:outline-none focus:ring focus:ring-orange-200"
             />
             {errors.name && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-500 text-sm mt-1 font-inter">
                 Recipe name is required
               </p>
             )}
@@ -93,12 +93,12 @@ const AddItem = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Category */}
             <div>
-              <label className="block font-medium mb-1">
-                Category<span className="text-red-500">*</span>
+              <label className="block font-inter text-xl font-semibold mb-1">
+                Category* 
               </label>
               <select
                 {...register("category", { required: true })}
-                className="select select-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
+                className="select select-bordered w-full font-inter text-xl font-normal text-[#A1A1A1]  focus:outline-none focus:ring focus:ring-orange-200"
               >
                 <option value="">Category</option>
                 <option value="salad">Salad</option>
@@ -108,7 +108,7 @@ const AddItem = () => {
                 <option value="drink">Drink</option>
               </select>
               {errors.category && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-red-500 text-sm mt-1 font-inter">
                   Category is required
                 </p>
               )}
@@ -116,33 +116,33 @@ const AddItem = () => {
 
             {/* Price */}
             <div>
-              <label className="block font-medium mb-1">
-                Price<span className="text-red-500">*</span>
+              <label className="block font-inter text-xl font-semibold mb-1">
+                Price* 
               </label>
               <input
                 {...register("price", { required: true })}
                 type="number"
                 placeholder="Price"
-                className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
+                className="input input-bordered w-full font-inter text-xl font-normal focus:outline-none focus:ring focus:ring-orange-200"
               />
               {errors.price && (
-                <p className="text-red-500 text-sm mt-1">Price is required</p>
+                <p className="text-red-500 text-sm mt-1 font-inter">Price is required</p>
               )}
             </div>
           </div>
 
           {/* Recipe Details */}
           <div>
-            <label className="block font-medium mb-1">
-              Recipe Details<span className="text-red-500">*</span>
+            <label className="block font-inter text-xl font-semibold  mb-1">
+              Recipe Details* 
             </label>
             <textarea
               {...register("recipe", { required: true })}
               placeholder="Recipe Details"
-              className="textarea textarea-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
+              className="textarea textarea-bordered w-full font-inter text-xl font-normal focus:outline-none focus:ring focus:ring-orange-200"
             ></textarea>
             {errors.recipe && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-500 text-sm mt-1 font-inter">
                 Recipe details are required
               </p>
             )}
@@ -150,16 +150,16 @@ const AddItem = () => {
 
           {/* Image */}
           <div>
-            <label className="block font-medium mb-1">
-              Upload Image<span className="text-red-500">*</span>
+            <label className="block font-inter text-xl font-semibold mb-1">
+              Upload Image* 
             </label>
             <input
               {...register("image", { required: true })}
               type="file"
-              className="file-input file-input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
+              className="font-inter text-xl font-normal text-[#A1A1A1] file-input file-input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200"
             />
             {errors.image && (
-              <p className="text-red-500 text-sm mt-1">Image is required</p>
+              <p className="text-red-500 text-sm mt-1 font-inter">Image is required</p>
             )}
           </div>
 
@@ -167,7 +167,7 @@ const AddItem = () => {
           <div>
             <button
               type="submit"
-              className="btn bg-amber-700 text-white hover:bg-amber-800"
+              className="btn bg-amber-700 text-white hover:bg-amber-800 font-inter text-xl font-semibold"
             >
               Add Item <ImSpoonKnife />
             </button>

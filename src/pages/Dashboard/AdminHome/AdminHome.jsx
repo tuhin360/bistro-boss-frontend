@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { IoIosWallet } from "react-icons/io";
 import { FaTruck, FaUsers } from "react-icons/fa";
 import { PiChefHatFill } from "react-icons/pi";
+ 
 import {
   BarChart,
   Bar,
@@ -23,6 +24,9 @@ import { RiRectangleFill } from "react-icons/ri";
 const barColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const pieColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const RADIAN = Math.PI / 180;
+
+
+
 
 const AdminHome = () => {
   const { user } = useAuth(); // Get the logged-in user
@@ -129,36 +133,34 @@ const AdminHome = () => {
       bg: "from-sky-500 via-cyan-400 to-blue-300",
     },
   ];
+   
 
-  // Main return UI
+  
   return (
     <div className="p-4 md:p-6">
-      {/* Welcome message */}
-      <h2 className="text-2xl font-bold mb-6">
+      <h2 className="text-2xl md:text-3xl font-semibold font-cinzel mb-6">
         Hi, Welcome {user?.displayName || "Back"}
       </h2>
 
-      {/* Stat cards section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" >
         {statCards.map((card, idx) => (
           <div
             key={idx}
-            className={`flex items-center gap-4 p-4 rounded-2xl shadow-lg text-white bg-gradient-to-br ${card.bg}`}
+            className={`flex items-center gap-4 p-4 rounded-2xl shadow-lg text-white bg-gradient-to-br ${card.bg}` }
           >
             {card.icon}
             <div>
-              <p className="text-3xl font-bold">{card.value}</p>
-              <p>{card.label}</p>
+              <p className="text-3xl font-extrabold font-inter">{card.value}</p>
+              <p className="font-inter font-normal text-2xl">{card.label}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Chart section: Bar and Pie charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded-2xl shadow-lg">
         {/* Bar chart */}
         <div>
-          <div className="w-full h-[300px]">
+          <div className="w-full h-[300px] capitalize font-inter text-base mb-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} margin={{ top: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -180,13 +182,15 @@ const AdminHome = () => {
             </ResponsiveContainer>
           </div>
           <div className="flex justify-center items-center gap-2 mt-4">
-            <RiRectangleFill className="size-6 text-blue-500"  />
-            Sold
+            <RiRectangleFill className="size-6  text-blue-400" />
+            <span className="text-blue-500 font-inter text-base font-semibold">
+              Sold
+            </span>
           </div>
         </div>
 
         {/* Pie chart */}
-        <div className="w-full h-[300px]">
+        <div className="w-full h-[300px] capitalize font-inter text-base">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -197,6 +201,7 @@ const AdminHome = () => {
                 label={renderCustomizedLabel}
                 outerRadius={80}
                 dataKey="value"
+                 
               >
                 {pieData.map((entry, index) => (
                   <Cell

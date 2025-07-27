@@ -4,7 +4,7 @@ const SectionTitle = ({ heading, subHeading }) => {
       <p className="text-[#D99904] italic text-sm md:text-base lg:text-[20px] mb-3 font-normal">
         --- {subHeading} ---
       </p>
-      <h3 className="text-xl md:text-2xl lg:text-[40px] border-y-2 md:border-y-4 py-2 md:py-4 uppercase font-normal">
+      <h3 className="text-xl md:text-2xl  border-y-2 md:border-y-4 py-2 md:py-4 uppercase font-normal">
         {heading}
       </h3>
     </div>

@@ -80,23 +80,23 @@ const Login = () => {
 
           {/* Right Side Form */}
           <div className="w-full lg:w-1/2 p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
+            <h2 className="text-3xl font-bold text-center mb-6 font-inter">Login</h2>
             <form onSubmit={handleLogin} className="space-y-5">
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
+                <label className="block text-xl font-semibold mb-1 font-inter">Email</label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="Type here"
-                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
+                  placeholder="Enter your email"
+                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200 font-inter text-base"
                   required
                 />
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-xl font-semibold font-inter mb-1">
                   Password
                 </label>
                 <div className="relative">
@@ -104,7 +104,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Enter your password"
-                    className="w-full border border-gray-300 px-4 py-2 pr-10 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
+                    className="w-full border border-gray-300 px-4 py-2 pr-10 rounded-md focus:outline-none focus:ring focus:ring-orange-200 font-inter text-base"
                     required
                   />
                   <button
@@ -119,7 +119,7 @@ const Login = () => {
 
               {/* CAPTCHA */}
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-base font-inter font-medium mb-1">
                   <LoadCanvasTemplate />
                 </label>
                 <input
@@ -127,7 +127,7 @@ const Login = () => {
                   ref={captchaRef}
                   name="captcha"
                   placeholder="Type here"
-                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none"
+                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none font-inter text-base"
                   required
                   onBlur={handleValidateCaptcha}
                 />
@@ -140,24 +140,24 @@ const Login = () => {
                 value="Sign In"
                 className={`w-full py-2 rounded-md text-white font-semibold transition duration-300 ${
                   disabled
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-gradient-to-r from-orange-300 to-yellow-500 hover:from-orange-400 hover:to-yellow-600 hover:cursor-pointer"
+                    ? "bg-gray-300 cursor-not-allowed text-xl font-inter"
+                    : "bg-gradient-to-r from-orange-300 to-yellow-500 hover:from-orange-400 hover:to-yellow-600 hover:cursor-pointer text-xl font-inter"
                 }`}
               />
 
               {/* Register Link */}
-              <p className="text-sm text-center mt-4">
+              <p className="font-inter text-xl font-medium text-center mt-4">
                 New here?
                 <Link
                   to="/signup"
-                  className="text-orange-600 font-medium underline ml-1"
+                  className="text-orange-600 font-medium underline ml-1 font-inter text-xl"
                 >
                   Create a New Account
                 </Link>
               </p>
 
               {/* Social Login */}
-              <div className="divider">Or sign in with</div>
+              <div className="divider font-inter text-xl font-medium">Or sign in with</div>
               <SocialLogin />
             </form>
           </div>

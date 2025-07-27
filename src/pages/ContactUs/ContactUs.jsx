@@ -29,8 +29,10 @@ const ContactUs = () => {
             <MdOutlinePhoneInTalk />
           </div>
           <div className="flex flex-col justify-center items-center text-center bg-[#F3F3F3] mx-4 md:mx-6 mb-6 h-[250px] px-4">
-            <h3 className="uppercase text-xl font-bold mb-2">Phone</h3>
-            <p>+880 1234567890</p>
+            <h3 className="uppercase text-xl md:text-2xl font-bold mb-2 font-inter">
+              Phone
+            </h3>
+            <p className="font-inter text-base">+880 1234567890</p>
           </div>
         </div>
         <div className="border border-gray-300 border-l-2 border-r-2 border-b-2 rounded-md">
@@ -38,8 +40,10 @@ const ContactUs = () => {
             <FaLocationDot />
           </div>
           <div className="flex flex-col justify-center items-center text-center bg-[#F3F3F3] mx-4 md:mx-6 mb-6 h-[250px] px-4">
-            <h3 className="uppercase text-xl font-bold mb-2">Address</h3>
-            <p>+880 1234567890</p>
+            <h3 className="uppercase text-xl md:text-2xl font-bold mb-2 font-inter">
+              Address
+            </h3>
+            <p className="font-inter text-base">+880 1234567890</p>
           </div>
         </div>
         <div className="border border-gray-300 border-l-2 border-r-2 border-b-2 rounded-md">
@@ -47,9 +51,11 @@ const ContactUs = () => {
             <FaClock />
           </div>
           <div className="flex flex-col justify-center items-center text-center bg-[#F3F3F3] mx-4 md:mx-6 mb-6 h-[250px] px-4">
-            <h3 className="uppercase text-xl font-bold mb-2">Working Hours</h3>
-            <p>Mon - Fri: 08:00 - 22:00</p>
-            <p>Sat - Sun: 10:00 - 23:00</p>
+            <h3 className="uppercase text-xl md:text-2xl font-bold mb-2 font-inter">
+              Working Hours
+            </h3>
+            <p className="font-inter text-base">Mon - Fri: 08:00 - 22:00</p>
+            <p className="font-inter text-base">Sat - Sun: 10:00 - 23:00</p>
           </div>
         </div>
       </div>
@@ -60,41 +66,41 @@ const ContactUs = () => {
       <Form className="bg-gray-100 p-6 md:p-10 rounded-lg shadow-md">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-            <h3 className="mb-2 font-semibold">Name</h3>
+            <h3 className="mb-2 font-semibold  font-inter">Name</h3>
             <input
               type="text"
               placeholder="Name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full font-inter"
             />
           </div>
           <div className="md:ml-2">
-            <h3 className="mb-2 font-semibold">Email</h3>
+            <h3 className="mb-2 font-semibold font-inter">Email</h3>
             <input
               type="email"
               placeholder="Email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full font-inter"
             />
           </div>
           <div>
-            <h3 className="mb-2 font-semibold">Phone</h3>
+            <h3 className="mb-2 font-semibold font-inter">Phone</h3>
             <input
               type="number"
               placeholder="Phone Number"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full font-inter"
             />
           </div>
         </div>
 
         <div className="mt-6">
-          <h3 className="mb-2 font-semibold">Message</h3>
+          <h3 className="mb-2 font-semibold font-inter">Message</h3>
           <textarea
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full font-inter"
             placeholder="Your Message"
             rows={5}
           ></textarea>
         </div>
         <div className="flex justify-center mt-6">
-          <button className="btn text-white font-semibold bg-gradient-to-r from-black via-gray-800 to-yellow-500 hover:from-black hover:to-yellow-400">
+          <button className="btn text-white font-bold bg-gradient-to-r from-black via-gray-800 to-yellow-500 hover:from-black hover:to-yellow-400 font-inter">
             Send Message <FaLocationArrow className="ml-2" />
           </button>
         </div>
@@ -104,5 +110,3 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
-
- 

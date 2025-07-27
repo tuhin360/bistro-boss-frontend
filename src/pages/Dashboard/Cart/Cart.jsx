@@ -52,29 +52,28 @@ const Cart = () => {
       <div className="-mt-8">
         <SectionTitle
           heading={"Wanna Add More"}
-          subHeading={"Your Cart"}
+          subHeading={"My Cart"}
         ></SectionTitle>
       </div>
 
       {/* Summary */}
       <div className="flex flex-col md:flex-row justify-around items-center gap-4">
-        <h2 className="text-lg md:text-2xl font-bold text-center uppercase">
+        <h2 className="text-lg md:text-3xl font-bold text-center uppercase font-cinzel">
           Total Orders: {cart.length}
         </h2>
-        <h2 className="text-lg md:text-2xl font-bold text-center uppercase">
+        <h2 className="text-lg md:text-3xl font-bold text-center uppercase font-cinzel">
           Total Price: ${totalPrice}
         </h2>
         {cart.length ? (
           <Link to="/dashboard/payment">
-            {" "}
-            <button className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg">
+            <button className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg font-cinzel">
               Pay
-            </button>{" "}
+            </button>
           </Link>
         ) : (
           <button
             disabled
-            className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed font-cinzel"
           >
             Pay
           </button>
@@ -86,17 +85,21 @@ const Cart = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr className="bg-yellow-600 text-white">
-              <th className="rounded-tl-md">No</th>
-              <th>Item Image</th>
-              <th>Item Name</th>
-              <th>Price</th>
-              <th className="rounded-tr-md">Action</th>
+              <th className="rounded-tl-md font-semibold text-base font-inter">
+                No
+              </th>
+              <th className="font-semibold text-base font-inter">Item Image</th>
+              <th className="font-semibold text-base font-inter">Item Name</th>
+              <th className="font-semibold text-base font-inter">Price</th>
+              <th className="rounded-tr-md font-semibold text-base font-inter">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
             {cart.map((item, index) => (
               <tr key={item._id}>
-                <td>{index + 1}</td>
+                <td className="font-inter font-bold text-xl">{index + 1}</td>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -106,16 +109,19 @@ const Cart = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="font-inter font-regular text-xl text-[#737373]">
                   <div>{item.name}</div>
                 </td>
-                <td>${item.price}</td>
+                <td className="font-inter font-regular text-xl text-[#737373]">
+                  ${item.price}
+                </td>
                 <td>
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="btn btn-ghost btn-lg"
+                    className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-md transition duration-200"
+                    title="Delete"
                   >
-                    <FaTrash className="text-red-600" />
+                    <FaTrash size={18} />
                   </button>
                 </td>
               </tr>

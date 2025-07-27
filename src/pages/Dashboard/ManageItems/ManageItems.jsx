@@ -6,7 +6,7 @@ import useMenu from "../../../hooks/useMenu";
 import { Link } from "react-router-dom";
 
 const ManageItems = () => {
-    const [menu, , refetch] = useMenu();
+  const [menu, , refetch] = useMenu();
   const axiosSecure = useAxiosSecure();
 
   const handleDeleteItem = async (id, name) => {
@@ -34,17 +34,12 @@ const ManageItems = () => {
     }
   };
 
-  // const handleEditItem = (id) => {
-  //   // TODO: Redirect to edit page or open modal
-  //   console.log("Edit item:", id);
-  // };
-
   return (
     <div className="bg-gray-100 p-10 rounded-lg shadow-md min-h-screen">
       <div className="max-w-4xl mx-auto bg-white p-8 rounded shadow">
         <SectionTitle heading="Manage All Items" subHeading="Hurry Up!" />
 
-        <h2 className="text-2xl font-semibold uppercase tracking-wide mt-4">
+        <h2 className="text-2xl md:text-3xl font-cinzel font-bold uppercase tracking-wide mt-4">
           Total Items: {menu.length}
         </h2>
 
@@ -52,18 +47,26 @@ const ManageItems = () => {
           <table className="table table-zebra w-full">
             <thead>
               <tr className="bg-[#D99904] text-white">
-                <th className="rounded-tl-lg">No</th>
-                <th>Item Image</th>
-                <th>Item Name</th>
-                <th>Price</th>
-                <th>Action</th>
-                <th className="rounded-tr-lg">Action</th>
+                <th className="rounded-tl-lg font-inter font-semibold text-base">
+                  No
+                </th>
+                <th className="font-inter font-semibold text-base">
+                  Item Image
+                </th>
+                <th className="font-inter font-semibold text-base">
+                  Item Name
+                </th>
+                <th className="font-inter font-semibold text-base">Price</th>
+                <th className=" font-inter font-semibold text-base">Action</th>
+                <th className="rounded-tr-lg font-inter font-semibold text-base">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
               {menu.map((item, index) => (
                 <tr key={item._id}>
-                  <td>{index + 1}</td>
+                  <td className="font-inter font-bold text-xl">{index + 1}</td>
                   <td>
                     <img
                       src={item.image}
@@ -71,23 +74,18 @@ const ManageItems = () => {
                       className="w-12 h-12 rounded object-cover"
                     />
                   </td>
-                  <td>{item.name}</td>
-                  <td>${item.price}</td>
+                  <td className="font-inter font-normal text-base">{item.name}</td>
+                  <td className="font-inter font-normal text-base">${item.price}</td>
                   <td>
-                    <Link
-                      to={`/dashboard/updateItem/${item._id}`}
-                    >
-                      <button
-                       
-                        className="btn btn-sm bg-[#D99904] hover:bg-[#c18b02] text-white"
-                      >
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button className="btn btn-sm bg-[#D99904] hover:bg-[#c18b02] text-white">
                         <FaEdit />
                       </button>
                     </Link>
                   </td>
                   <td>
                     <button
-                      onClick={() => handleDeleteItem(item._id,  item.name)}
+                      onClick={() => handleDeleteItem(item._id, item.name)}
                       className="btn btn-sm bg-red-500 hover:bg-red-700 text-white"
                     >
                       <FaTrash />

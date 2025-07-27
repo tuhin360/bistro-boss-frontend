@@ -27,7 +27,11 @@ const UserLinks = [
     icon: <FaCalendarAlt />,
     label: "Reservation",
   },
-  { to: "/dashboard/paymentHistory", icon: <FaWallet />, label: "Payment History" },
+  {
+    to: "/dashboard/paymentHistory",
+    icon: <FaWallet />,
+    label: "Payment History",
+  },
   { to: "/dashboard/cart", icon: <FaShoppingCart />, label: "My Cart" },
   { to: "/dashboard/review", icon: <MdRateReview />, label: "Add Review" },
   { to: "/dashboard/booking", icon: <TbBrandBooking />, label: "My Booking" },
@@ -35,11 +39,7 @@ const UserLinks = [
 
 const AdminLinks = [
   { to: "/dashboard/adminHome", icon: <MdHomeFilled />, label: "Admin Home" },
-  {
-    to: "/dashboard/addItem",
-    icon: <ImSpoonKnife />,
-    label: "Add Item",
-  },
+  { to: "/dashboard/addItem", icon: <ImSpoonKnife />, label: "Add Item" },
   { to: "/dashboard/manageItems", icon: <TfiMenuAlt />, label: "Manage Items" },
   {
     to: "/dashboard/manageBookings",
@@ -51,7 +51,7 @@ const AdminLinks = [
 
 const mainLinks = [
   { to: "/", icon: <MdHomeFilled />, label: "Home" },
-  { to: "/home", icon: <IoMdMenu />, label: "Menu" },
+  { to: "/menu", icon: <IoMdMenu />, label: "Menu" },
   { to: "/order/salad", icon: <FaShoppingBag />, label: "Shop" },
   { to: "/contact", icon: <FaEnvelope />, label: "Contact" },
 ];
@@ -59,7 +59,6 @@ const mainLinks = [
 const Dashboard = () => {
   const [cart] = useCart();
   const [open, setOpen] = useState(false);
-  // Check if the user is an admin
   const [isAdmin] = useAdmin();
 
   const linkClass = ({ isActive }) =>
@@ -72,75 +71,60 @@ const Dashboard = () => {
       <Helmet>
         <title>Bistro Boss | Dashboard</title>
       </Helmet>
+
       <div className="flex flex-col md:flex-row min-h-screen">
         {/* Mobile Top Bar */}
         <div className="md:hidden flex justify-between items-center bg-orange-400 p-4">
-          <Link to="/" className="text-lg font-bold text-black">
-            BISTRO BOSS
-          </Link>
-          <button onClick={() => setOpen(!open)} className="text-black">
-            {open ? <FaTimes size={20} /> : <FaBars size={20} />}
+          <div className="text-white font-cinzel font-extrabold text-xl tracking-wide">
+            My Dashboard
+          </div>
+          <button onClick={() => setOpen(!open)} className="text-white">
+            {open ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
         {/* Sidebar */}
         <div
           className={`bg-orange-400 uppercase 
-          fixed z-50 top-14 
-          md:static md:block 
-          h-[calc(100vh-56px)] md:h-screen w-64 
-          transition-transform duration-300
-          ${open ? "translate-x-0" : "translate-x-full"} 
-          md:translate-x-0
-          md:left-0 md:right-auto right-0`}
+            fixed z-50 top-14 
+            md:static md:block 
+            h-[calc(100vh-56px)] md:h-screen w-64 
+            transition-transform duration-300
+            ${open ? "translate-x-0" : "translate-x-full"} 
+            md:translate-x-0
+            md:left-0 md:right-auto right-0`}
         >
-          <Link
-            to="/"
-            className="hidden md:block text-xl px-6 mt-4 font-bold tracking-wide text-black"
-          >
-            BISTRO BOSS
-          </Link>
-          <ul className="p-4 space-y-1">
-            {isAdmin ? (
-              <>
-                {AdminLinks.map((link) => (
-                  <li key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      className={linkClass}
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.icon}
-                      {link.to === "/dashboard/cart"
-                        ? `${link.label} (${cart.length})`
-                        : link.label}
-                    </NavLink>
-                  </li>
-                ))}
-              </>
-            ) : (
-              <>
-                {UserLinks.map((link) => (
-                  <li key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      className={linkClass}
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.icon}
-                      {link.to === "/dashboard/cart"
-                        ? `${link.label} (${cart.length})`
-                        : link.label}
-                    </NavLink>
-                  </li>
-                ))}
-              </>
-            )}
+          <div className="p-4 text-center">
+            <Link
+              to="/"
+              className="text-xl md:text-2xl font-extrabold tracking-wider text-white transition duration-300 ease-out transform hover:scale-105 font-cinzel block"
+            >
+              BISTRO BOSS
+              <span className="block text-sm md:text-base tracking-[0.35em] font-light mt-1">
+                Restaurant
+              </span>
+            </Link>
+          </div>
 
+          <ul className="p-4 space-y-1">
+            {(isAdmin ? AdminLinks : UserLinks).map((link) => (
+              <li key={link.to} className="font-medium font-cinzel text-base">
+                <NavLink
+                  to={link.to}
+                  className={linkClass}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.icon}
+                  {link.to === "/dashboard/cart"
+                    ? `${link.label} (${cart.length})`
+                    : link.label}
+                </NavLink>
+              </li>
+            ))}
             <div className="divider before:bg-white after:bg-white"></div>
 
             {mainLinks.map((link) => (
-              <li key={link.to}>
+              <li key={link.to} className="font-medium font-cinzel text-base">
                 <NavLink
                   to={link.to}
                   className={linkClass}

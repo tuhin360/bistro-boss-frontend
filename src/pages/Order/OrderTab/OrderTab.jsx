@@ -29,7 +29,7 @@ const OrderTab = ({ items }) => {
     setActiveSlide(swiper.activeIndex);
 
     window.scrollTo({
-      top: 0,
+      left: 500,
       behavior: "smooth",
     });
   };

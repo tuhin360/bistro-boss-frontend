@@ -73,15 +73,15 @@ const SignUp = () => {
         <div className="shadow-lg rounded-lg p-10 flex flex-col lg:flex-row items-center gap-10 max-w-5xl w-full border border-gray-300">
           {/* Form Section */}
           <div className="w-full lg:w-1/2">
-            <h2 className="text-3xl font-bold mb-6">Sign Up</h2>
+            <h2 className="text-3xl font-bold mb-6 font-inter text-center">Sign Up</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium mb-1">Name</label>
+                <label className="block text-xl font-medium mb-1 font-inter">Name</label>
                 <input
                   type="text"
                   {...register("name", { required: true })}
-                  placeholder="Type here"
+                  placeholder="Name"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
                 {errors.name && (
@@ -91,7 +91,7 @@ const SignUp = () => {
 
               {/* Photo URL */}
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-xl font-inter font-medium mb-1">
                   Photo URL
                 </label>
                 <input
@@ -107,11 +107,11 @@ const SignUp = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
+                <label className="block font-medium mb-1 text-xl font-inter">Email</label>
                 <input
                   type="email"
                   {...register("email", { required: true })}
-                  placeholder="Type here"
+                  placeholder="Email"
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                 />
                 {errors.email && (
@@ -121,7 +121,7 @@ const SignUp = () => {
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-xl font-inter font-medium mb-1">
                   Password
                 </label>
                 <div className="relative">
@@ -134,7 +134,7 @@ const SignUp = () => {
                       pattern:
                         /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).*$/,
                     })}
-                    placeholder="Enter your password"
+                    placeholder="Password"
                     className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-orange-200"
                   />
                   <button
@@ -168,25 +168,25 @@ const SignUp = () => {
                 <input
                   type="submit"
                   value="Sign Up"
-                  className="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-orange-400 hover:to-amber-500 text-white py-2 rounded-md font-semibold transition duration-300 hover:cursor-pointer"
+                  className="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-orange-400 hover:to-amber-500 text-white py-2 rounded-md  transition duration-300 hover:cursor-pointer font-inter font-bold text-xl"
                 />
               </div>
             </form>
 
             {/* Redirect */}
-            <p className="text-sm text-center mt-4">
+            <p className="text-xl text-center mt-4 font-inter font-medium">
               Already registered?
               <Link
                 to="/login"
-                className="text-orange-600 font-bold underline ml-1"
+                className="text-orange-600 font-bold underline ml-1 font-inter text-xl"
               >
                 Go to login
               </Link>
             </p>
 
             {/* Social Login */}
-            <p className="text-sm text-center mt-6">Or sign up with</p>
-            <div>
+            <p className="text-xl font-inter font-medium text-center mt-6 ">Or sign up with</p>
+            <div className="mt-6">
               <SocialLogin />
             </div>
           </div>

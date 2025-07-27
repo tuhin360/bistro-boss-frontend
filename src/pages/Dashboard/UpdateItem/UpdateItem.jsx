@@ -59,22 +59,26 @@ const UpdateItem = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Recipe name */}
           <div>
-            <label>Recipe name *</label>
+            <label className="font-inter font-semibold text-xl">
+              Recipe name*
+            </label>
             <input
               {...register("name", { required: true })}
               defaultValue={data.name}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200 font-inter text-xl font-normal text-[#A1A1A1]"
             />
           </div>
 
           {/* Category & Price */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label>Category *</label>
+              <label className="font-inter font-semibold text-xl">
+                Category*
+              </label>
               <select
                 {...register("category", { required: true })}
                 defaultValue={data.category}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full focus:outline-none focus:ring focus:ring-orange-200 font-inter text-xl font-normal text-[#A1A1A1]"
               >
                 <option value="">Select Category</option>
                 <option value="salad">Salad</option>
@@ -86,41 +90,45 @@ const UpdateItem = () => {
             </div>
 
             <div>
-              <label>Price *</label>
+              <label className="font-inter font-semibold text-xl">Price*</label>
               <input
                 type="number"
                 step="0.01"
                 {...register("price", { required: true })}
                 defaultValue={data.price}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200 font-inter text-xl font-normal  text-[#A1A1A1]"
               />
             </div>
           </div>
 
           {/* Recipe Details */}
           <div>
-            <label>Recipe Details *</label>
+            <label className="font-inter font-semibold text-xl">
+              Recipe Details*
+            </label>
             <textarea
               {...register("recipe", { required: true })}
               defaultValue={data.recipe}
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full focus:outline-none focus:ring focus:ring-orange-200 font-inter text-xl font-normal text-[#A1A1A1]"
             />
           </div>
 
           {/* Image Upload */}
           <div>
-            <label>Image (optional)</label>
+            <label className="font-inter font-semibold text-xl">
+              Image (optional)
+            </label>
             <input
               type="file"
               {...register("image")}
               accept="image/*"
-              className="file-input file-input-bordered w-full"
+              className="file-input file-input-bordered w-full focus:outline-none focus:ring focus:ring-orange-200 font-inter text-xl font-normal text-[#A1A1A1]"
             />
           </div>
           <div className=" flex justify-center">
             <button
               type="submit"
-              className="btn bg-amber-700 text-white hover:bg-amber-800 text-center"
+              className="btn bg-amber-700 text-white hover:bg-amber-800 text-center font-inter text-xl font-bold"
             >
               Update Recipe Details
             </button>

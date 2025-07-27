@@ -27,7 +27,7 @@ const PaymentHistory = () => {
       ></SectionTitle>
 
       <div className="bg-white shadow-md rounded p-4 max-w-5xl mx-auto">
-        <h3 className="text-lg font-semibold mb-4">
+        <h3 className="text-3xl font-cinzel font-bold mb-4">
           Total Payments: {payments.length}
         </h3>
 
@@ -35,26 +35,27 @@ const PaymentHistory = () => {
           <table className="table table-zebra w-full border">
             <thead>
               <tr className="bg-yellow-600 text-white">
-                <th className="px-4 py-2 text-left rounded-tl-md ">Email</th>
-                <th className="px-4 py-2 text-left rounded-tl-md ">Transaction ID</th>
-                <th className="px-4 py-2 text-left rounded-tl-md ">Status</th>
-                <th className="px-4 py-2 text-left">Category</th>
-                <th className="px-4 py-2 text-left">Total Price</th>
-                <th className="px-4 py-2 text-left rounded-tr-md">Payment Date</th>
+                <th className="px-4 py-2 text-left rounded-tl-md font-inter font-semibold text-base">Email</th>
+                <th className="px-4 py-2 text-left rounded-tl-md font-inter font-semibold text-base">
+                  Transaction ID
+                </th>
+                <th className="px-4 py-2 text-left rounded-tl-md font-inter font-semibold text-base">Status</th>
+                <th className="px-4 py-2 text-left font-inter font-semibold text-base">Category</th>
+                <th className="px-4 py-2 text-left font-inter font-semibold text-base">Total Price</th>
+                <th className="px-4 py-2 text-left rounded-tr-md font-inter font-semibold text-base">
+                  Payment Date
+                </th>
               </tr>
             </thead>
             <tbody>
               {payments.map((payment, index) => (
-                <tr
-                  key={index}
-                  className="border-t hover:bg-gray-50"
-                >
-                  <td className="px-4 py-4">{payment.email}</td>
-                  <td className="px-4 py-4">{payment.transactionId}</td>
-                  <td className="px-4 py-4">{payment.status}</td>
-                  <td className="px-4 py-2">Food Order</td>
-                  <td className="px-4 py-2">${payment.price.toFixed(2)}</td>
-                  <td className="px-4 py-2">
+                <tr key={index} className="border-t hover:bg-gray-50">
+                  <td className="px-4 py-4 font-inter font-normal text-base">{payment.email}</td>
+                  <td className="px-4 py-4 font-inter font-normal text-base">{payment.transactionId}</td>
+                  <td className="px-4 py-4 font-inter font-normal text-base">{payment.status}</td>
+                  <td className="px-4 py-2 font-inter font-normal text-base">Food Order</td>
+                  <td className="px-4 py-2 font-inter font-normal text-base">${payment.price.toFixed(2)}</td>
+                  <td className="px-4 py-2 font-inter font-normal text-base">
                     {new Date(payment.date).toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",
