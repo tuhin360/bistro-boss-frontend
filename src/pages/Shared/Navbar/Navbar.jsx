@@ -22,10 +22,16 @@ const Navbar = () => {
     {
       to: "/dashboard/cart",
       label: (
-        <button className="flex justify-center items-center gap-2">
-          <FaShoppingCart className="text-2xl" />
-          <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
+        <div className="relative group cursor-pointer">
+          <button className="relative group focus:outline-none">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-green-600 to-green-800 border-[3px] border-yellow-500 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <FaShoppingCart className="text-white text-xl sm:text-2xl" />
+            </div>
+            <div className="absolute -bottom-1 -right-1 bg-red-500 text-black text-[10px] sm:text-[11px] min-w-[16px] sm:min-w-[18px] h-[16px] sm:h-[18px] px-[4px] sm:px-[5px] flex items-center justify-center rounded-full font-bold   shadow-sm">
+              {cart.length}
+            </div>
+          </button>
+        </div>
       ),
     },
   ];
@@ -35,7 +41,7 @@ const Navbar = () => {
       <NavLink
         to={link.to}
         className={({ isActive }) =>
-          `block px-3 py-2 font-medium uppercase transition-colors duration-200 ${
+          `block px-3 py-2 font-medium uppercase transition duration-300 ease-out transform hover:scale-105 ${
             isActive ? "text-yellow-400" : "hover:text-yellow-300"
           }`
         }
@@ -51,9 +57,12 @@ const Navbar = () => {
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
         <Link
           to="/"
-          className="text-xl font-bold tracking-wide text-yellow-400"
+          className="text-xl font-bold tracking-wider text-white transition duration-300 ease-out transform hover:scale-105"
         >
-          BISTRO BOSS
+          BISTRO BOSS <br />
+          <span className="text-sm text-white tracking-[0.50em] block w-full  ">
+            Restaurant
+          </span>
         </Link>
 
         <div className="lg:hidden">
@@ -72,18 +81,20 @@ const Navbar = () => {
           {user ? (
             <li className="flex items-center gap-2">
               {user.photoURL && (
-                <img
-                  src={user.photoURL}
-                  alt="User"
-                  className="w-8 h-8 rounded-full object-cover border border-yellow-400"
-                />
+                <div
+                  className="tooltip tooltip-bottom"
+                  data-tip={user.displayName}
+                >
+                  <img
+                    src={user.photoURL}
+                    alt="User"
+                    className="w-8 h-8 rounded-full object-cover border border-yellow-400"
+                  />
+                </div>
               )}
-              <span className="text-yellow-300 text-sm">
-                {user.displayName}
-              </span>
               <button
                 onClick={handleLogout}
-                className="text-sm uppercase hover:text-yellow-400"
+                className="text-sm uppercase hover:text-yellow-400 transition duration-300 ease-out transform hover:scale-105"
               >
                 Logout
               </button>
@@ -93,7 +104,7 @@ const Navbar = () => {
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
-                  `block px-3 py-2 font-medium uppercase transition-colors duration-200 ${
+                  `block px-3 py-2 font-medium uppercase transition-colors duration-300 ease-out transform hover:scale-105 ${
                     isActive ? "text-yellow-400" : "hover:text-yellow-300"
                   }`
                 }
