@@ -43,7 +43,9 @@ const ContactUs = () => {
             <h3 className="uppercase text-xl md:text-2xl font-bold mb-2 font-inter">
               Address
             </h3>
-            <p className="font-inter text-base">+880 1234567890</p>
+            <p className="font-inter text-base">
+              123 ABS Street, Uni 21, Bangladesh
+            </p>
           </div>
         </div>
         <div className="border border-gray-300 border-l-2 border-r-2 border-b-2 rounded-md">
@@ -70,7 +72,7 @@ const ContactUs = () => {
             <input
               type="text"
               placeholder="Name"
-              className="input input-bordered w-full font-inter"
+              className="input input-bordered w-full font-inter focus:outline-none focus:ring focus:ring-orange-200"
             />
           </div>
           <div className="md:ml-2">
@@ -78,7 +80,7 @@ const ContactUs = () => {
             <input
               type="email"
               placeholder="Email"
-              className="input input-bordered w-full font-inter"
+              className="input input-bordered w-full font-inter focus:outline-none focus:ring focus:ring-orange-200"
             />
           </div>
           <div>
@@ -86,7 +88,7 @@ const ContactUs = () => {
             <input
               type="number"
               placeholder="Phone Number"
-              className="input input-bordered w-full font-inter"
+              className="input input-bordered w-full font-inter focus:outline-none focus:ring focus:ring-orange-200"
             />
           </div>
         </div>
@@ -94,7 +96,7 @@ const ContactUs = () => {
         <div className="mt-6">
           <h3 className="mb-2 font-semibold font-inter">Message</h3>
           <textarea
-            className="textarea textarea-bordered w-full font-inter"
+            className="textarea textarea-bordered w-full font-inter focus:outline-none focus:ring focus:ring-orange-200"
             placeholder="Your Message"
             rows={5}
           ></textarea>

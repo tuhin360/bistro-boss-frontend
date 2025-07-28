@@ -81,7 +81,7 @@ const Cart = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto w-full mt-6">
+      <div className="overflow-x-auto max-w-4xl mx-auto mt-6">
         <table className="table table-zebra w-full">
           <thead>
             <tr className="bg-yellow-600 text-white">

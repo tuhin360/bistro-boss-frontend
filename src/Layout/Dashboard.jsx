@@ -19,6 +19,8 @@ import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { BiSolidBookBookmark } from "react-icons/bi";
 import useAdmin from "../hooks/useAdmin";
+import FloatingContactButtons from "../components/FloatingContactButtons/FloatingContactButtons";
+
 
 const UserLinks = [
   { to: "/dashboard/userHome", icon: <MdHomeFilled />, label: "User Home" },
@@ -142,6 +144,7 @@ const Dashboard = () => {
         <div className="flex-1 pt-10 overflow-y-auto max-h-screen bg-gray-50">
           <Outlet />
         </div>
+         <FloatingContactButtons />
       </div>
     </>
   );

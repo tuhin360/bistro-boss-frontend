@@ -26,8 +26,8 @@ const pieColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const RADIAN = Math.PI / 180;
 
 const AdminHome = () => {
-  const { user } = useAuth(); // Get the logged-in user
-  const axiosSecure = useAxiosSecure(); // Secure axios instance with JWT
+  const { user } = useAuth();  
+  const axiosSecure = useAxiosSecure();   
 
   // Fetch admin stats data from backend
   const { data: stats = {}, isLoading } = useQuery({

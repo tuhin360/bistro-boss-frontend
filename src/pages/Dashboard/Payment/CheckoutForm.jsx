@@ -75,10 +75,10 @@ const CheckoutForm = () => {
       return;
     }
 
-    console.log("PaymentIntent", paymentIntent);
+    // console.log("PaymentIntent", paymentIntent);
 
     if (paymentIntent.status === "succeeded") {
-      console.log("Transaction id:", paymentIntent.id);
+      // console.log("Transaction id:", paymentIntent.id);
       setTransactionId(paymentIntent.id);
 
       const paymentDetails = {
@@ -93,7 +93,7 @@ const CheckoutForm = () => {
 
       try {
         const res = await axiosSecure.post("/payments", paymentDetails);
-        console.log("Payment saved:", res.data);
+        // console.log("Payment saved:", res.data);
         refetch();
 
         if (res.data?.paymentInsertedId) {
