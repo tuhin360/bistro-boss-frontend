@@ -63,13 +63,13 @@ const AddItem = () => {
   };
 
   return (
-    <>
+    <div className="bg-gray-100">
       <SectionTitle
         subHeading="What's new?"
         heading="Add an Item"
       ></SectionTitle>
 
-      <div className="max-w-3xl mx-auto bg-gray-100 p-8 rounded shadow">
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded shadow">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Recipe Name */}
           <div>
@@ -174,7 +174,7 @@ const AddItem = () => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

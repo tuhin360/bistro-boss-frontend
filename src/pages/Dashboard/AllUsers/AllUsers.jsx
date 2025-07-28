@@ -7,13 +7,26 @@ import Swal from "sweetalert2";
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [], refetch } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
+
+  // Show a spinning loader while loading
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="w-16 h-16 border-4 border-t-transparent border-purple-500 rounded-full animate-spin shadow-lg"></div>
+      </div>
+    );
+  }
 
   const handleDeleteUser = (id) => {
     Swal.fire({
@@ -69,7 +82,7 @@ const AllUsers = () => {
 
   return (
     <div className="bg-gray-100 p-10 rounded-lg shadow-md h-screen">
-      <div className="max-w-3xl mx-auto bg-white   p-8 rounded shadow ">
+      <div className="max-w-4xl mx-auto bg-white   p-8 rounded shadow ">
         <SectionTitle heading={"All Users"} subHeading={"Manage All Users"} />
         <h2 className="text-2xl md:3xl font-bold  uppercase tracking-wide font-cinzel">
           Total Users: {users.length}
@@ -97,7 +110,9 @@ const AllUsers = () => {
                   <td className="font-inter font-normal text-base">
                     {user.name}
                   </td>
-                  <td className="font-inter font-normal text-base">{user.email}</td>
+                  <td className="font-inter font-normal text-base">
+                    {user.email}
+                  </td>
                   <td className="font-inter font-normal text-base">
                     {user.role === "admin" ? (
                       "Admin"

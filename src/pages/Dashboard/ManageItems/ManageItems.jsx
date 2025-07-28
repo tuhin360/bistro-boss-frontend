@@ -4,9 +4,10 @@ import Swal from "sweetalert2";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import useMenu from "../../../hooks/useMenu";
 import { Link } from "react-router-dom";
+ 
 
 const ManageItems = () => {
-  const [menu, , refetch] = useMenu();
+  const [menu,isMenuLoading , refetch] = useMenu();
   const axiosSecure = useAxiosSecure();
 
   const handleDeleteItem = async (id, name) => {
@@ -33,6 +34,15 @@ const ManageItems = () => {
       Swal.fire("Error!", "Failed to delete item.", "error");
     }
   };
+
+ // ✅ Show loading spinner
+  if (isMenuLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="w-16 h-16 border-4 border-t-transparent border-purple-500 rounded-full animate-spin shadow-lg"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-100 p-10 rounded-lg shadow-md min-h-screen">

@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { IoIosWallet } from "react-icons/io";
 import { FaTruck, FaUsers } from "react-icons/fa";
 import { PiChefHatFill } from "react-icons/pi";
- 
+
 import {
   BarChart,
   Bar,
@@ -24,9 +24,6 @@ import { RiRectangleFill } from "react-icons/ri";
 const barColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const pieColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const RADIAN = Math.PI / 180;
-
-
-
 
 const AdminHome = () => {
   const { user } = useAuth(); // Get the logged-in user
@@ -133,20 +130,18 @@ const AdminHome = () => {
       bg: "from-sky-500 via-cyan-400 to-blue-300",
     },
   ];
-   
 
-  
   return (
-    <div className="p-4 md:p-6">
+    <div className="p-4  max-w-4xl mx-auto">
       <h2 className="text-2xl md:text-3xl font-semibold font-cinzel mb-6">
         Hi, Welcome {user?.displayName || "Back"}
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {statCards.map((card, idx) => (
           <div
             key={idx}
-            className={`flex items-center gap-4 p-4 rounded-2xl shadow-lg text-white bg-gradient-to-br ${card.bg}` }
+            className={`flex items-center gap-4 p-4 rounded-2xl shadow-lg text-white bg-gradient-to-br ${card.bg}`}
           >
             {card.icon}
             <div>
@@ -201,7 +196,6 @@ const AdminHome = () => {
                 label={renderCustomizedLabel}
                 outerRadius={80}
                 dataKey="value"
-                 
               >
                 {pieData.map((entry, index) => (
                   <Cell

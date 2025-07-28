@@ -15,7 +15,7 @@ const useMenu = () => {
     },
   });
 
-  return [menu, loading, refetch];
+  return [menu,loading, refetch];
 };
 
 export default useMenu;

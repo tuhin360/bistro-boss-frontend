@@ -20,6 +20,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import ReadMore from "../pages/Home/ReadMore/ReadMore";
+import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -53,8 +54,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "read-more",
-        element: <ReadMore/>
-      }
+        element: <ReadMore />,
+      },
     ],
   },
   {
@@ -112,6 +113,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "manageBookings",
+        element: (
+          <AdminRoutes>
+            <ManageBookings />
+          </AdminRoutes>
+        ),
+      },
+      {
         path: "updateItem/:id",
         element: (
           <AdminRoutes>
@@ -119,7 +128,9 @@ export const router = createBrowserRouter([
           </AdminRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://bistro-boss-backend-rose.vercel.app/menu/${params.id}`),
+          fetch(
+            `https://bistro-boss-backend-rose.vercel.app/menu/${params.id}`
+          ),
       },
     ],
   },
