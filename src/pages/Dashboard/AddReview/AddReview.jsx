@@ -38,7 +38,7 @@ const AddReview = () => {
           confirmButtonText: "OK",
         });
       }
-    } catch {
+    } catch(error) {
       Swal.fire({
         title: "Error!",
         text: "Something went wrong. Please try again.",

@@ -22,6 +22,7 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import ReadMore from "../pages/Home/ReadMore/ReadMore";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
 import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import Reservation from "../pages/Dashboard/Revervation/Reservation";
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,14 @@ export const router = createBrowserRouter([
         element: <UserHome />,
       },
       {
+        path: "reservation",
+        element: <Reservation />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
+      },
+      {
         path: "cart",
         element: <Cart />,
       },
@@ -84,10 +93,7 @@ export const router = createBrowserRouter([
         path: "payment",
         element: <Payment />,
       },
-      {
-        path: "paymentHistory",
-        element: <PaymentHistory />,
-      },
+
       // admin only routes
       {
         path: "adminHome",
