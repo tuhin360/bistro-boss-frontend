@@ -35,7 +35,7 @@ const UserLinks = [
     label: "Payment History",
   },
   { to: "/dashboard/cart", icon: <FaShoppingCart />, label: "My Cart" },
-  { to: "/dashboard/review", icon: <MdRateReview />, label: "Add Review" },
+  { to: "/dashboard/addReview", icon: <MdRateReview />, label: "Add Review" },
   { to: "/dashboard/booking", icon: <TbBrandBooking />, label: "My Booking" },
 ];
 

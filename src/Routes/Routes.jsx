@@ -21,6 +21,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import ReadMore from "../pages/Home/ReadMore/ReadMore";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
+import AddReview from "../pages/Dashboard/AddReview/AddReview";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "addReview",
+        element: <AddReview />,
       },
       {
         path: "payment",

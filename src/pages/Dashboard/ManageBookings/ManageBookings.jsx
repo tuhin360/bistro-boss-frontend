@@ -16,7 +16,7 @@ const ManageBookings = () => {
     queryKey: ["payments"],
     queryFn: async () => {
       const res = await axiosSecure.get("/payments");
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -60,7 +60,6 @@ const ManageBookings = () => {
                   No
                 </th>
                 <th className="font-inter font-semibold text-base">
-                  {" "}
                   User Email
                 </th>
                 <th className="font-inter font-semibold text-base">Date</th>
