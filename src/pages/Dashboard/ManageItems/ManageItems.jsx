@@ -30,7 +30,7 @@ const ManageItems = () => {
         refetch();
       }
     } catch (error) {
-      console.error("Error deleting item:", error);
+      // console.error("Error deleting item:", error);
       Swal.fire("Error!", "Failed to delete item.", "error");
     }
   };

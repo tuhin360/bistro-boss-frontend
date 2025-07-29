@@ -39,7 +39,7 @@ const ManageBookings = () => {
         refetch();
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       Swal.fire("Error", "Failed to update status", "error");
     }
   };

@@ -51,7 +51,8 @@ const Login = () => {
       });
       navigate(from, { replace: true });
     } catch (error) {
-      console.error("Login failed:", error);
+      // console.error("Login failed:", error);
+      Swal.fire("Error!", "Login failed. Please try again.", "error");
     }
   };
 

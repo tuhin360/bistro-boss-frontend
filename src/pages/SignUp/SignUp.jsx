@@ -27,7 +27,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         updateUserProfile(data.name, data.photoUrl)
           .then(() => {
             // create user entry in the database
@@ -37,7 +37,7 @@ const SignUp = () => {
             };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
-                console.log("User created successfully:", res.data);
+                // console.log("User created successfully:", res.data);
                 reset();
                 Swal.fire({
                   title: "Sign Up Successful",

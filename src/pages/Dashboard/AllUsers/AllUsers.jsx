@@ -52,7 +52,7 @@ const AllUsers = () => {
             }
           })
           .catch((error) => {
-            console.error("Error deleting user:", error);
+            // console.error("Error deleting user:", error);
             Swal.fire({
               title: "Error!",
               text: "There was an error deleting the user.",
@@ -65,7 +65,7 @@ const AllUsers = () => {
 
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({

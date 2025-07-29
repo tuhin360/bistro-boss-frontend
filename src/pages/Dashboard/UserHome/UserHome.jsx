@@ -7,24 +7,26 @@ import { useState, useEffect } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useMenu from "../../../hooks/useMenu";
 import useCart from "../../../hooks/useCart";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useReservation from "../../../hooks/useReservation";
 
 const UserHome = () => {
   const { user } = useAuth();
   const [menu, loading] = useMenu();
   const [cart] = useCart();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const [reservation] = useReservation();
 
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axiosPublic.get("/reviews").then((res) => setReviews(res.data));
-  }, [axiosPublic]);
+    axiosSecure.get("/reviews").then((res) => setReviews(res.data));
+  }, [axiosSecure]);
 
   const { data: payments = [] } = useQuery({
     queryKey: ["payments", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/payments/${user?.email}`);
+      const res = await axiosSecure.get(`/payments/${user?.email}`);
       return res.data;
     },
   });
@@ -47,13 +49,13 @@ const UserHome = () => {
     {
       icon: <GoHomeFill className="size-14" />,
       value: cart.length,
-      label: "In Cart",
+      label: "Shop",
       bg: "from-yellow-400 via-orange-400 to-red-400",
     },
     {
       icon: <FaPhoneAlt className="size-14" />,
       value: 3,
-      label: "Contacts",
+      label: "Contact",
       bg: "from-pink-600 via-pink-400 to-rose-300",
     },
   ];
@@ -113,7 +115,7 @@ const UserHome = () => {
 
           <div className="flex items-center gap-3 text-2xl text-gray-700 font-semibold font-cinzel">
             <SlCalender className="text-orange-500" />
-            Bookings: <span className="font-semibold">{cart.length}</span>
+            Bookings: <span className="font-semibold">{reservation.length}</span>
           </div>
 
           <div className="flex items-center gap-3 text-2xl  text-gray-700 font-semibold font-cinzel">

@@ -23,6 +23,7 @@ import ReadMore from "../pages/Home/ReadMore/ReadMore";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
 import AddReview from "../pages/Dashboard/AddReview/AddReview";
 import Reservation from "../pages/Dashboard/Revervation/Reservation";
+import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: "addReview",
         element: <AddReview />,
+      },
+      {
+        path: "myBooking",
+        element: <MyBooking />,
       },
       {
         path: "payment",

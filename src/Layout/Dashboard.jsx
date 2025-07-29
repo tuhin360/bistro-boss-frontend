@@ -36,7 +36,7 @@ const UserLinks = [
   },
   { to: "/dashboard/cart", icon: <FaShoppingCart />, label: "My Cart" },
   { to: "/dashboard/addReview", icon: <MdRateReview />, label: "Add Review" },
-  { to: "/dashboard/booking", icon: <TbBrandBooking />, label: "My Booking" },
+  { to: "/dashboard/myBooking", icon: <TbBrandBooking />, label: "My Booking" },
 ];
 
 const AdminLinks = [

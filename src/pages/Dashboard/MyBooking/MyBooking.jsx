@@ -1,17 +1,28 @@
-import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useReservation from "../../../hooks/useReservation";
 import useCart from "../../../hooks/useCart";
+import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
 
-const Cart = () => {
+const MyBooking = () => {
+  const [reservation] = useReservation();
   const [cart, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
+
+  // Total Price
   const totalPrice = cart
     .reduce((total, item) => total + item.price, 0)
     .toFixed(2);
-  const axiosSecure = useAxiosSecure();
 
+  // 🔍 Helper: Get guest number by matching reservation email
+  const getGuestCountByEmail = (email) => {
+    const matched = reservation.find((res) => res.email === email);
+    return matched?.guest || "-";
+  };
+
+ 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -49,22 +60,20 @@ const Cart = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen px-2">
-      <div className="-mt-8">
-        <SectionTitle
-          heading={"Wanna Add More"}
-          subHeading={"My Cart"}
-        ></SectionTitle>
-      </div>
+      <SectionTitle
+        heading={"My Booking"}
+        subHeading={"Excellent Ambience"}
+      />
 
-      {/* Summary */}
-      <div className="flex flex-col md:flex-row justify-around items-center gap-4">
+      {/* ✅ Summary */}
+      <div className="flex flex-col md:flex-row justify-around items-center gap-4 my-6 px-2">
         <h2 className="text-lg md:text-3xl font-bold text-center uppercase font-cinzel">
-          Total Orders: {cart.length}
+          Total Bookings: {reservation.length}
         </h2>
         <h2 className="text-lg md:text-3xl font-bold text-center uppercase font-cinzel">
           Total Price: ${totalPrice}
         </h2>
-        {cart.length ? (
+        {reservation.length ? (
           <Link to="/dashboard/payment">
             <button className="btn text-lg md:text-xl font-bold uppercase bg-orange-400 px-6 py-2 rounded-lg font-cinzel">
               Pay
@@ -80,20 +89,17 @@ const Cart = () => {
         )}
       </div>
 
-      {/* Table */}
+      {/* ✅ Booking Table */}
       <div className="overflow-x-auto max-w-4xl mx-auto mt-6">
         <table className="table table-zebra w-full">
           <thead>
             <tr className="bg-yellow-600 text-white">
-              <th className="rounded-tl-md font-semibold text-base font-inter">
-                No
-              </th>
+              <th className="rounded-tl-md font-semibold text-base font-inter">No</th>
               <th className="font-semibold text-base font-inter">Item Image</th>
+              <th className="font-semibold text-base font-inter">Guest Number</th>
               <th className="font-semibold text-base font-inter">Item Name</th>
               <th className="font-semibold text-base font-inter">Price</th>
-              <th className="rounded-tr-md font-semibold text-base font-inter">
-                Action
-              </th>
+              <th className="rounded-tr-md font-semibold text-base font-inter">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -110,7 +116,10 @@ const Cart = () => {
                   </div>
                 </td>
                 <td className="font-inter font-regular text-xl text-[#737373]">
-                  <div>{item.name}</div>
+                  {getGuestCountByEmail(item.email)}
+                </td>
+                <td className="font-inter font-regular text-xl text-[#737373]">
+                  {item.name}
                 </td>
                 <td className="font-inter font-regular text-xl text-[#737373]">
                   ${item.price}
@@ -133,4 +142,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default MyBooking;

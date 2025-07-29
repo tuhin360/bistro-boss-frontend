@@ -54,7 +54,7 @@ const CheckoutForm = () => {
       return;
     }
 
-    console.log("[PaymentMethod]", paymentMethod);
+    // console.log("[PaymentMethod]", paymentMethod);
 
     // Step 2: confirm payment intent
     const { paymentIntent, error: confirmError } =
@@ -70,7 +70,7 @@ const CheckoutForm = () => {
 
     if (confirmError) {
       setCardError(confirmError.message);
-      console.log("confirmError", confirmError);
+      // console.log("confirmError", confirmError);
       setProcessing(false);
       return;
     }
@@ -114,7 +114,7 @@ const CheckoutForm = () => {
           });
         }
       } catch (err) {
-        console.error(err);
+        // console.error(err);
         Swal.fire({
           title: "Server Error!",
           text: "Please try again later.",
