@@ -5,6 +5,8 @@ import { useEffect } from "react";
 const ChefRecommendCard = ({ item }) => {
   const { title, description, image } = item;
 
+  
+
   useEffect(() => {
     Aos.init();
   }, []);

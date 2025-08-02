@@ -8,7 +8,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBooking = () => {
   const [reservation] = useReservation();
-  const [cart, refetch] = useCart();
+  const [cart, isLoading, refetch] = useCart();
   const axiosSecure = useAxiosSecure();
 
   // Total Price
@@ -22,7 +22,14 @@ const MyBooking = () => {
     return matched?.guest || "-";
   };
 
- 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="w-16 h-16 border-4 border-t-transparent border-purple-500 rounded-full animate-spin shadow-lg"></div>
+      </div>
+    );
+  }
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -60,10 +67,7 @@ const MyBooking = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen px-2">
-      <SectionTitle
-        heading={"My Booking"}
-        subHeading={"Excellent Ambience"}
-      />
+      <SectionTitle heading={"My Booking"} subHeading={"Excellent Ambience"} />
 
       {/* ✅ Summary */}
       <div className="flex flex-col md:flex-row justify-around items-center gap-4 my-6 px-2">
@@ -94,12 +98,18 @@ const MyBooking = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr className="bg-yellow-600 text-white">
-              <th className="rounded-tl-md font-semibold text-base font-inter">No</th>
+              <th className="rounded-tl-md font-semibold text-base font-inter">
+                No
+              </th>
               <th className="font-semibold text-base font-inter">Item Image</th>
-              <th className="font-semibold text-base font-inter">Guest Number</th>
+              <th className="font-semibold text-base font-inter">
+                Guest Number
+              </th>
               <th className="font-semibold text-base font-inter">Item Name</th>
               <th className="font-semibold text-base font-inter">Price</th>
-              <th className="rounded-tr-md font-semibold text-base font-inter">Action</th>
+              <th className="rounded-tr-md font-semibold text-base font-inter">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>

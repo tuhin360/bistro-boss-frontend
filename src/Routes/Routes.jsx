@@ -25,129 +25,137 @@ import AddReview from "../pages/Dashboard/AddReview/AddReview";
 import Reservation from "../pages/Dashboard/Revervation/Reservation";
 import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "menu",
-        element: <Menu />,
-      },
-      {
-        path: "order/:category",
-        element: <Order />,
-      },
-      {
-        path: "contact",
-        element: <ContactUs />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-      {
-        path: "read-more",
-        element: <ReadMore />,
-      },
-    ],
-  },
-  {
-    path: "dashboard",
-    element: (
-      <PrivateRoutes>
-        <Dashboard />
-      </PrivateRoutes>
-    ),
-    children: [
-      // normal user routes
-      {
-        path: "userHome",
-        element: <UserHome />,
-      },
-      {
-        path: "reservation",
-        element: <Reservation />,
-      },
-      {
-        path: "paymentHistory",
-        element: <PaymentHistory />,
-      },
-      {
-        path: "cart",
-        element: <Cart />,
-      },
-      {
-        path: "addReview",
-        element: <AddReview />,
-      },
-      {
-        path: "myBooking",
-        element: <MyBooking />,
-      },
-      {
-        path: "payment",
-        element: <Payment />,
-      },
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Main />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "menu",
+          element: <Menu />,
+        },
+        {
+          path: "order/:category",
+          element: <Order />,
+        },
+        {
+          path: "contact",
+          element: <ContactUs />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "signup",
+          element: <SignUp />,
+        },
+        {
+          path: "read-more",
+          element: <ReadMore />,
+        },
+      ],
+    },
+    {
+      path: "dashboard",
+      element: (
+        <PrivateRoutes>
+          <Dashboard />
+        </PrivateRoutes>
+      ),
+      children: [
+        // normal user routes
+        {
+          path: "userHome",
+          element: <UserHome />,
+        },
+        {
+          path: "reservation",
+          element: <Reservation />,
+        },
+        {
+          path: "paymentHistory",
+          element: <PaymentHistory />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
+        },
+        {
+          path: "addReview",
+          element: <AddReview />,
+        },
+        {
+          path: "myBooking",
+          element: <MyBooking />,
+        },
+        {
+          path: "payment",
+          element: <Payment />,
+        },
 
-      // admin only routes
-      {
-        path: "adminHome",
-        element: <AdminHome />,
-      },
-      {
-        path: "allUsers",
-        element: (
-          <AdminRoutes>
-            <AllUsers />
-          </AdminRoutes>
-        ),
-      },
-      {
-        path: "addItem",
-        element: (
-          <AdminRoutes>
-            <AddItem />
-          </AdminRoutes>
-        ),
-      },
-      {
-        path: "manageItems",
-        element: (
-          <AdminRoutes>
-            <ManageItems />
-          </AdminRoutes>
-        ),
-      },
-      {
-        path: "manageBookings",
-        element: (
-          <AdminRoutes>
-            <ManageBookings />
-          </AdminRoutes>
-        ),
-      },
-      {
-        path: "updateItem/:id",
-        element: (
-          <AdminRoutes>
-            <UpdateItem />
-          </AdminRoutes>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://bistro-boss-backend-rose.vercel.app/menu/${params.id}`
+        // admin only routes
+        {
+          path: "adminHome",
+          element: <AdminHome />,
+        },
+        {
+          path: "allUsers",
+          element: (
+            <AdminRoutes>
+              <AllUsers />
+            </AdminRoutes>
           ),
-      },
-    ],
-  },
-]);
+        },
+        {
+          path: "addItem",
+          element: (
+            <AdminRoutes>
+              <AddItem />
+            </AdminRoutes>
+          ),
+        },
+        {
+          path: "manageItems",
+          element: (
+            <AdminRoutes>
+              <ManageItems />
+            </AdminRoutes>
+          ),
+        },
+        {
+          path: "manageBookings",
+          element: (
+            <AdminRoutes>
+              <ManageBookings />
+            </AdminRoutes>
+          ),
+        },
+        {
+          path: "updateItem/:id",
+          element: (
+            <AdminRoutes>
+              <UpdateItem />
+            </AdminRoutes>
+          ),
+          loader: ({ params }) =>
+            fetch(
+              ` http://localhost:5000/menu/${params.id}`
+            ),
+        },
+      ],
+    },
+  ],
+  {
+    future: {
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    },
+  }
+);

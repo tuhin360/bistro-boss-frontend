@@ -6,11 +6,19 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch, isLoading] = useCart();
   const totalPrice = cart
     .reduce((total, item) => total + item.price, 0)
     .toFixed(2);
   const axiosSecure = useAxiosSecure();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="w-16 h-16 border-4 border-t-transparent border-purple-500 rounded-full animate-spin shadow-lg"></div>
+      </div>
+    );
+  }
 
   const handleDelete = (id) => {
     Swal.fire({

@@ -15,7 +15,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart, refetch] = useCart();
+  const [cart, refetch, isLoading] = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -85,7 +85,7 @@ const CheckoutForm = () => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price: totalPrice,
-        date: new Date(),
+        date: new Date().toISOString(),
         cartIds: cart.map((item) => item._id),
         menuIds: cart.map((item) => item.menuId),
         status: "pending",
@@ -114,7 +114,7 @@ const CheckoutForm = () => {
           });
         }
       } catch (err) {
-        // console.error(err);
+        console.error(err);
         Swal.fire({
           title: "Server Error!",
           text: "Please try again later.",
@@ -126,6 +126,10 @@ const CheckoutForm = () => {
 
     setProcessing(false);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
