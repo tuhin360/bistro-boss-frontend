@@ -7,9 +7,14 @@ const PrivateRoutes = ({children}) => {
     const {user, loading} = useAuth();
     const location= useLocation();
 
-    if(loading) {
-        return <progress className="progress w-56"></progress>
-    }
+    if (loading) {
+    // Show spinner while checking auth state
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
     if(user) {
         return children;
