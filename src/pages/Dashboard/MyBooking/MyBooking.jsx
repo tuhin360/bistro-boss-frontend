@@ -8,7 +8,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBooking = () => {
   const [reservation] = useReservation();
-  const [cart, isLoading, refetch] = useCart();
+  const [cart, refetch, isLoading] = useCart();
   const axiosSecure = useAxiosSecure();
 
   // Total Price
