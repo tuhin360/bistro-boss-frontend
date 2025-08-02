@@ -8,7 +8,7 @@ const ReadMore = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Contact Us</title>
+        <title>Bistro Boss | Read More</title>
       </Helmet>
       <Cover
         img={contactImg}
