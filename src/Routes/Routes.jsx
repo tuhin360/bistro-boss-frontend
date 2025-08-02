@@ -146,7 +146,7 @@ export const router = createBrowserRouter(
           ),
           loader: ({ params }) =>
             fetch(
-              ` http://localhost:5000/menu/${params.id}`
+              `http://localhost:5000/menu/${params.id}`
             ),
         },
       ],

@@ -29,7 +29,7 @@ const ReadMore = () => {
           style={{ maxHeight: "350px" }}
         />
 
-        <p className="md:w-1/2 text-gray-700 text-justify">
+        <p className="md:w-1/2 text-gray-700 text-justify font-inter text-md">
           Welcome to Bistro Boss! Our signature dish combines the freshest
           ingredients with authentic flavors that will leave your taste buds
           craving for more. From farm-to-table freshness to mouth-watering

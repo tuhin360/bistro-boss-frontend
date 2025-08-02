@@ -32,12 +32,6 @@ const SocialLogin = () => {
       >
         <FaGoogle />
       </button>
-      <button className="btn btn-outline btn-circle text-lg">
-        <FaFacebookF />
-      </button>
-      <button className="btn btn-outline btn-circle text-lg">
-        <FaGithub />
-      </button>
     </div>
   );
 };
