@@ -14,9 +14,9 @@ const FoodCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
-  const [ , refetch] = useCart();
+  const [, refetch] = useCart();
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = () => {
     if (user && user.email) {
       // send cart item data to the database
       const cartItem = {
@@ -76,16 +76,17 @@ const FoodCard = ({ item }) => {
 
   return (
     <div
-      className="card w-full max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md bg-base-100 shadow-xl hover:shadow-xl transition-shadow duration-300 my-4 md:my-6"
+      className="card w-full max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md bg-base-100 shadow-md hover:shadow-2xl  transition-shadow duration-300 my-4 md:my-6"
       data-aos="fade-up"
       data-aos-anchor-placement="top-bottom"
       data-aos-delay="300"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-t-lg">
         <img
           src={image}
-          alt="img"
-          className="w-full h-48 sm:h-52 md:h-64 object-cover rounded-t-lg"
+          alt={`Image of ${name}`}
+          className="w-full h-48 sm:h-52 md:h-64 object-cover transition-transform duration-500 md:hover:scale-105"
+          data-aos-delay="150"
         />
         <span className="absolute top-0 right-0 bg-black text-white px-2 py-1 rounded-md mr-2 mt-2 font-inter text-base">
           ${price}
@@ -100,8 +101,8 @@ const FoodCard = ({ item }) => {
         </p>
         <div className="card-actions">
           <button
-            onClick={() => handleAddToCart(item)}
-            className="btn btn-outline uppercase text-[#BB8506] border-0 border-b-4 md:hover:bg-black md:hover:border-b-black transition duration-200 font-inter text-xl"
+            onClick={handleAddToCart}
+            className="btn btn-outline uppercase text-[#BB8506] border-0 border-b-4 hover:border-[#BB8506] hover:bg-[#1e1e1e] hover:text-white"
           >
             Add To Cart
           </button>

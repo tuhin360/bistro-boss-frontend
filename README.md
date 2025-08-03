@@ -28,14 +28,8 @@
 
   <!-- Quick Links -->
   <div style="margin: 20px 0;">
-    <a href="https://bistro-boss.netlify.app">
+    <a href="https://bistro-boss-97f52.web.app">
       <img src="https://img.shields.io/badge/🚀_Live_Demo-22C55E?style=plastic&logo=netlify&logoColor=white&labelColor=000000" alt="Live Demo" />
-    </a>
-    <a href="https://github.com/your-username/bistro-boss-frontend">
-      <img src="https://img.shields.io/badge/📂_Source_Code-1E90FF?style=plastic&logo=github&logoColor=white" alt="Source" />
-    </a>
-    <a href="https://github.com/your-username/bistro-boss-frontend/issues/new?assignees=&labels=bug&projects=&template=bug_report.md">
-      <img src="https://img.shields.io/badge/🐞_Report_Bug-DC3545?style=plastic&logo=github&logoColor=white" alt="Bug" />
     </a>
   </div>
 
@@ -69,7 +63,7 @@
 ## 🚀 Live Demo
 
 <p align="center">
-  <a href="https://bistro-boss.netlify.app">
+  <a href="https://bistro-boss-97f52.web.app">
     <img src="https://img.shields.io/badge/👉_Click_Here_to_Try-FF8C00?style=for-the-badge&logo=netlify&logoColor=white&labelColor=black" />
   </a>
 </p>

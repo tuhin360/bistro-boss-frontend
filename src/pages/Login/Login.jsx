@@ -10,20 +10,21 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import authenticationImg from "../../assets/others/authentication.png";
 import authenticationImg2 from "../../assets/others/authentication2.png";
-import {
-  FaEyeSlash,
-  FaEye,
-} from "react-icons/fa";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+
   const { signIn } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -41,17 +42,29 @@ const Login = () => {
     const password = form.password.value;
 
     try {
-      await signIn(email, password);
-      Swal.fire({
-        title: "Login Successful",
-        icon: "success",
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate(from, { replace: true });
+      // 🔐 Firebase Sign In
+      const result = await signIn(email, password);
+      const user = result.user;
+
+      // 🔐 Get JWT token from server
+      const res = await axiosPublic.post("/jwt", { email: user.email });
+
+      if (res.data.token) {
+        localStorage.setItem("access-token", res.data.token);
+
+        Swal.fire({
+          title: "Login Successful",
+          icon: "success",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        // ✅ Redirect only after setting token
+        navigate(from, { replace: true });
+      }
     } catch (error) {
-      // console.error("Login failed:", error);
+      console.error("Login failed:", error);
       Swal.fire("Error!", "Login failed. Please try again.", "error");
     }
   };
@@ -62,16 +75,15 @@ const Login = () => {
         <title>Bistro Boss | Login</title>
       </Helmet>
 
-      {/* Main Wrapper with Background */}
       <div
         className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
         style={{
           backgroundImage: `url(${authenticationImg})`,
         }}
       >
-        <div className=" shadow-2xl rounded-xl flex flex-col lg:flex-row max-w-5xl w-full overflow-hidden border border-gray-300 ">
+        <div className="shadow-2xl rounded-xl flex flex-col lg:flex-row max-w-5xl w-full overflow-hidden border border-gray-300">
           {/* Left Side Image */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center p-8 ">
+          <div className="w-full lg:w-1/2 flex justify-center items-center p-8">
             <img
               src={authenticationImg2}
               alt="Authentication Illustration"
@@ -81,11 +93,16 @@ const Login = () => {
 
           {/* Right Side Form */}
           <div className="w-full lg:w-1/2 p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-center mb-6 font-inter">Login</h2>
+            <h2 className="text-3xl font-bold text-center mb-6 font-inter">
+              Login
+            </h2>
+
             <form onSubmit={handleLogin} className="space-y-5">
               {/* Email */}
               <div>
-                <label className="block text-xl font-semibold mb-1 font-inter">Email</label>
+                <label className="block text-xl font-semibold mb-1 font-inter">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -134,7 +151,7 @@ const Login = () => {
                 />
               </div>
 
-              {/* Submit Button */}
+              {/* Submit */}
               <input
                 type="submit"
                 disabled={disabled}
@@ -158,7 +175,9 @@ const Login = () => {
               </p>
 
               {/* Social Login */}
-              <div className="divider font-inter text-xl font-medium">Or sign in with</div>
+              <div className="divider font-inter text-xl font-medium">
+                Or sign in with
+              </div>
               <SocialLogin />
             </form>
           </div>

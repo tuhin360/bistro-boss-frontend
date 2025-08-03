@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
@@ -25,6 +26,7 @@ const AddReview = () => {
       recipe: data.recipe,
       suggestion: data.suggestion,
       details: data.review,
+      email: user?.email,
       rating,
     };
 
@@ -95,7 +97,7 @@ const AddReview = () => {
             <input
               {...register("suggestion", { required: true })}
               type="text"
-              placeholder="Suggestion"
+              placeholder="Any suggestion for us"
               className="input input-bordered w-full px-5 py-6 font-inter text-xl focus:outline-none focus:ring focus:ring-orange-200"
             />
             {errors.suggestion && (

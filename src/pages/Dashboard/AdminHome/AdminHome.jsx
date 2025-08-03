@@ -156,26 +156,36 @@ const AdminHome = () => {
         {/* Bar chart */}
         <div>
           <div className="w-full h-[300px] capitalize font-inter text-base mb-4">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} margin={{ top: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Bar
-                  dataKey="quantity"
-                  shape={<TriangleBar />}
-                  label={{ position: "top" }}
-                >
-                  {chartData.map((entry, index) => (
-                    <Cell
-                      key={index}
-                      fill={barColors[index % barColors.length]}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+  <ResponsiveContainer width="100%" height="100%">
+    <BarChart 
+      data={chartData} 
+      margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis 
+        dataKey="category" 
+        interval={0}
+        tick={{ fontSize: 14, fontWeight: "semibold" }}
+        angle={-45}  // Rotate labels if needed
+        textAnchor="end"
+        height={70}  // Increase height for rotated labels
+      />
+      <YAxis />
+      <Bar
+        dataKey="quantity"
+        shape={<TriangleBar />}
+        label={{ position: "top" }}
+      >
+        {chartData.map((entry, index) => (
+          <Cell
+            key={index}
+            fill={barColors[index % barColors.length]}
+          />
+        ))}
+      </Bar>
+    </BarChart>
+  </ResponsiveContainer>
+</div>
           <div className="flex justify-center items-center gap-2 mt-4">
             <RiRectangleFill className="size-6  text-blue-400" />
             <span className="text-blue-500 font-inter text-base font-semibold">

@@ -6,7 +6,7 @@ const ChefRecommend = () => {
 
   const [menu] = useMenu();
   
-  const ChefRecommend = menu.filter((item) => item.category === "chef recommend");
+  const ChefRecommend = menu.filter((item) => item.category === "recommend");
 
   return (
     <div className="mb-20 px-4 md:px-8 lg:px-16">

@@ -1,10 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext } from "react";
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -45,6 +47,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+ 
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
@@ -53,28 +56,34 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      if(currentUser){
-        // get token and store client
-        const userInfo = {email: currentUser.email}
-        axiosPublic.post('/jwt', userInfo)
-        .then(res => {
-          if(res.data.token){
-            localStorage.setItem('access-token', res.data.token);
-          }
-        })
-      }else{
-        // TODO: remove token from client side(if exits on client side: localStorage, caching, in memory)
-        localStorage.removeItem('access-token');
-      }
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+
+        if (currentUser) {
+          const userInfo = { email: currentUser.email };
+          axiosPublic.post("/jwt", userInfo).then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("access-token", res.data.token);
+            }
+          });
+        } else {
+          localStorage.removeItem("access-token");
+        }
+
+        setLoading(false);
+      });
+
+      return () => unsubscribe();
+    })
+    .catch((error) => {
+      console.error("Firebase persistence error:", error);
       setLoading(false);
     });
-    return () => {
-      unsubscribe();
-    };
-  }, [axiosPublic]);
+}, [axiosPublic]);
 
   const authInfo = {
     user,

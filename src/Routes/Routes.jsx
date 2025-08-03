@@ -22,7 +22,7 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import ReadMore from "../pages/Home/ReadMore/ReadMore";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
 import AddReview from "../pages/Dashboard/AddReview/AddReview";
-import Reservation from "../pages/Dashboard/Revervation/Reservation";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
 import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 
 export const router = createBrowserRouter(
@@ -146,7 +146,7 @@ export const router = createBrowserRouter(
           ),
           loader: ({ params }) =>
             fetch(
-              `https://bistro-boss-backend-rose.vercel.app/menu/${params.id}`
+              `http://localhost:5000/menu/${params.id}`
             ),
         },
       ],

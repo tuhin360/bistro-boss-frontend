@@ -3,7 +3,7 @@ import { GoHomeFill } from "react-icons/go";
 import { FaPhoneAlt, FaShoppingCart, FaStar, FaWallet } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { useQuery } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useMenu from "../../../hooks/useMenu";
 import useCart from "../../../hooks/useCart";
@@ -17,11 +17,15 @@ const UserHome = () => {
   const axiosSecure = useAxiosSecure();
   const [reservation] = useReservation();
 
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    axiosSecure.get("/reviews").then((res) => setReviews(res.data));
-  }, [axiosSecure]);
+  // Fetch only logged-in user's reviews
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews", user?.email],
+    enabled: !!user?.email, // Only fetch if user.email exists
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/reviews?email=${user.email}`);
+      return res.data;
+    },
+  });
 
   const { data: payments = [] } = useQuery({
     queryKey: ["payments", user?.email],
@@ -115,7 +119,8 @@ const UserHome = () => {
 
           <div className="flex items-center gap-3 text-2xl text-gray-700 font-semibold font-cinzel">
             <SlCalender className="text-orange-500" />
-            Bookings: <span className="font-semibold">{reservation.length}</span>
+            Bookings:{" "}
+            <span className="font-semibold">{reservation.length}</span>
           </div>
 
           <div className="flex items-center gap-3 text-2xl  text-gray-700 font-semibold font-cinzel">
