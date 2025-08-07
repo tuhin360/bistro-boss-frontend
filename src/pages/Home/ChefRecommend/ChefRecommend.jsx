@@ -3,9 +3,8 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
 
 const ChefRecommend = () => {
-
   const [menu] = useMenu();
-  
+
   const ChefRecommend = menu.filter((item) => item.category === "recommend");
 
   return (
@@ -24,3 +23,7 @@ const ChefRecommend = () => {
 };
 
 export default ChefRecommend;
+
+
+
+ 
