@@ -166,8 +166,8 @@ src/
 ## 🛠️ Clone from GitHub
 
 ```bash
-https://github.com/tuhin360/bistro-boss-frontend.git
-cd bistro-boss
+git clone https://github.com/tuhin360/bistro-boss-frontend.git
+cd bistro-boss-frontend
 ```
 
 ---
@@ -224,10 +224,10 @@ pnpm dev
 
 <div align="center">
   <img src="./src/assets/dashboard/admin-dashboard-analytics.png" alt="Admin Dashboard Analytics" width="80%" style="border-radius: 8px; margin: 12px 0;" />
-  <img src="./src/assets/dashboard/admin-add-item" alt="Admin Add Item" width="80%" style="border-radius: 8px; margin: 12px 0;" />
+  <img src="./src/assets/dashboard/admin-add-item.png" alt="Admin Add Item" width="80%" style="border-radius: 8px; margin: 12px 0;" />
   <img src="./src/assets/dashboard/admin-manage_item.png" alt="Admin Manage Item" width="80%" style="border-radius: 8px; margin: 12px 0;" />
   <img src="./src/assets/dashboard/admin-manage_booking.png" alt="Admin Manage Booking" width="80%" style="border-radius: 8px; margin: 12px 0;" />
-  <img src="./src/assets/dashboard/admin-manage-user.png" alt="Admin Manage Booking" width="80%" style="border-radius: 8px; margin: 12px 0;" />
+  <img src="./src/assets/dashboard/admin-manage-user.png" alt="Admin Manage User" width="80%" style="border-radius: 8px; margin: 12px 0;" />
 </div>
 
 
@@ -246,6 +246,10 @@ pnpm dev
 
 **Jahedi Alam Tuhin**  
 GitHub: [https://github.com/tuhin360](https://github.com/tuhin360)
+
+---
+
+> 📌 This repo contains the **frontend** for Bistro Boss. Backend runs on a separate Node.js + Express + MongoDB project.
 
 ---
 
