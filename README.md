@@ -163,6 +163,15 @@ src/
 
 ---
 
+## 🛠️ Clone from GitHub
+
+```bash
+https://github.com/tuhin360/bistro-boss-frontend.git
+cd bistro-boss
+```
+
+---
+
 ## 📦 Install Dependencies
 
 ```bash
@@ -212,7 +221,7 @@ pnpm dev
 
 ### Admin Dashboard Screenshots
 
-```markdown
+
 <div align="center">
   <img src="./src/assets/dashboard/admin-dashboard-analytics.png" alt="Admin Dashboard Analytics" width="80%" style="border-radius: 8px; margin: 12px 0;" />
   <img src="./src/assets/dashboard/admin-add-item" alt="Admin Add Item" width="80%" style="border-radius: 8px; margin: 12px 0;" />
@@ -220,7 +229,7 @@ pnpm dev
   <img src="./src/assets/dashboard/admin-manage_booking.png" alt="Admin Manage Booking" width="80%" style="border-radius: 8px; margin: 12px 0;" />
   <img src="./src/assets/dashboard/admin-manage-user.png" alt="Admin Manage Booking" width="80%" style="border-radius: 8px; margin: 12px 0;" />
 </div>
-```
+
 
 ---
 
