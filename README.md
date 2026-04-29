@@ -208,7 +208,7 @@ pnpm dev
 ## 🔐 Admin Access (Demo)
 
 - Email: [jhon@gmail.com](mailto:jhon@gmail.com)  
-- Password: `Jhon123#`
+- Password: `*Jhon123#`
 
 ---
 
